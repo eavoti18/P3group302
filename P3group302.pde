@@ -1,119 +1,81 @@
-// initial code
+// code example for drawing lines
 
-import oscP5.*;
-import netP5.*;
-
-// Runway Host
-String runwayHost = "127.0.0.1";
-
-// Runway Port
-int runwayPort = 57100;
-
-int width = 400;
-int height = 350;
-
-OscP5 oscP5;
-NetAddress myBroadcastLocation;
+// import Runway library
+import com.runwayml.*;
+// reference to runway instance
+RunwayHTTP runway;
 
 // This array will hold all the humans detected
 JSONObject data;
-JSONArray humans;
 
 // This are the pair of body connections we want to form. 
 // Try creating new ones!
-String[][] connections = {
-  {"nose", "leftEye"},
-  {"leftEye", "leftEar"},
-  {"nose", "rightEye"},
-  {"rightEye", "rightEar"},
-  {"rightShoulder", "rightElbow"},
-  {"rightElbow", "rightWrist"},
-  {"leftShoulder", "leftElbow"},
-  {"leftElbow", "leftWrist"}, 
-  {"rightHip", "rightKnee"},
-  {"rightKnee", "rightAnkle"},
-  {"leftHip", "leftKnee"},
-  {"leftKnee", "leftAnkle"}
+int[][] connections = {
+  {ModelUtils.POSE_NOSE_INDEX, ModelUtils.POSE_LEFT_EYE_INDEX},
+  {ModelUtils.POSE_LEFT_EYE_INDEX, ModelUtils.POSE_LEFT_EAR_INDEX},
+  {ModelUtils.POSE_NOSE_INDEX,ModelUtils.POSE_RIGHT_EYE_INDEX},
+  {ModelUtils.POSE_RIGHT_EYE_INDEX,ModelUtils.POSE_RIGHT_EAR_INDEX},
+  {ModelUtils.POSE_RIGHT_SHOULDER_INDEX,ModelUtils.POSE_RIGHT_ELBOW_INDEX},
+  {ModelUtils.POSE_RIGHT_ELBOW_INDEX,ModelUtils.POSE_RIGHT_WRIST_INDEX},
+  {ModelUtils.POSE_LEFT_SHOULDER_INDEX,ModelUtils.POSE_LEFT_ELBOW_INDEX},
+  {ModelUtils.POSE_LEFT_ELBOW_INDEX,ModelUtils.POSE_LEFT_WRIST_INDEX}, 
+  {ModelUtils.POSE_RIGHT_HIP_INDEX,ModelUtils.POSE_RIGHT_KNEE_INDEX},
+  {ModelUtils.POSE_RIGHT_KNEE_INDEX,ModelUtils.POSE_RIGHT_ANKLE_INDEX},
+  {ModelUtils.POSE_LEFT_HIP_INDEX,ModelUtils.POSE_LEFT_KNEE_INDEX},
+  {ModelUtils.POSE_LEFT_KNEE_INDEX,ModelUtils.POSE_LEFT_ANKLE_INDEX}
 };
 
-void setup() {
-  size(400, 350);
-  frameRate(25);
-
-  OscProperties properties = new OscProperties();
-  properties.setRemoteAddress("127.0.0.1", 57200);
-  properties.setListeningPort(57200);
-  properties.setDatagramSize(99999999);
-  properties.setSRSP(OscProperties.ON);
-  oscP5 = new OscP5(this, properties);
-
-  // Use the localhost and the port 57100 that we define in Runway
-  myBroadcastLocation = new NetAddress(runwayHost, runwayPort);
-
-  connect();
-
-  fill(255);
-  stroke(255);
+void setup(){
+  // match sketch size to default model camera setup
+  size(600,400);
+  // change default black stroke
+  stroke(9,130,250);
+  strokeWeight(3);
+  // setup Runway
+  runway = new RunwayHTTP(this);
 }
 
-void draw() {
+void draw(){
   background(0);
-  // Choose between drawing just an ellipse
-  // over the body parts or drawing connections
-  // between them. or both!
-  drawParts();
+  // manually draw PoseNet parts
+  drawPoseNetParts(data);
 }
 
-
-// A function to draw humans body parts as circles
-void drawParts() {
+void drawPoseNetParts(JSONObject data){
   // Only if there are any humans detected
   if (data != null) {
-    humans = data.getJSONArray("poses");
+    JSONArray humans = data.getJSONArray("poses");
     for(int h = 0; h < humans.size(); h++) {
       JSONArray keypoints = humans.getJSONArray(h);
       // Now that we have one human, let's draw its body parts
-      for (int k = 0; k < keypoints.size(); k++) {
-        // Body parts are relative to width and weight of the input
-        JSONArray point = keypoints.getJSONArray(k);
-        float x = point.getFloat(0);
-        float y = point.getFloat(1);
-        ellipse(x * width, y * height, 10, 10);
+      for(int i = 0 ; i < connections.length; i++){
+        
+        JSONArray startPart = keypoints.getJSONArray(connections[i][0]);
+        JSONArray endPart   = keypoints.getJSONArray(connections[i][1]);
+        // extract floats fron JSON array and scale normalized value to sketch size
+        float startX = startPart.getFloat(0) * width;
+        float startY = startPart.getFloat(1) * height;
+        float endX   = endPart.getFloat(0) * width;
+        float endY   = endPart.getFloat(1) * height; 
+        line(startX,startY,endX,endY);
       }
     }
   }
 }
 
-void connect() {
-  OscMessage m = new OscMessage("/server/connect");
-  oscP5.send(m, myBroadcastLocation);
+// this is called when new Runway data is available
+void runwayDataEvent(JSONObject runwayData){
+  // point the sketch data to the Runway incoming data 
+  data = runwayData;
+  
 }
 
-void disconnect() {
-  OscMessage m = new OscMessage("/server/disconnect");
-  oscP5.send(m, myBroadcastLocation);
+// this is called each time Processing connects to Runway
+// Runway sends information about the current model
+public void runwayInfoEvent(JSONObject info){
+  println(info);
 }
-
-void keyPressed() {
-  switch(key) {
-    case('c'):
-      /* connect to Runway */
-      connect();
-      break;
-    case('d'):
-      /* disconnect from Runway */
-      disconnect();
-      break;
-
-  }
-}
-
-// OSC Event: listens to data coming from Runway
-void oscEvent(OscMessage theOscMessage) {
-  if (!theOscMessage.addrPattern().equals("/data")) return;
-  // The data is in a JSON string, so first we get the string value
-  String dataString = theOscMessage.get(0).stringValue();
-
-  // We then parse it as a JSONObject
-  data = parseJSONObject(dataString);
+// if anything goes wrong
+public void runwayErrorEvent(String message){
+  println(message);
 }
