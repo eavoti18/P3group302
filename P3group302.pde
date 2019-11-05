@@ -82,6 +82,20 @@ void setup(){
 }
 
 void draw(){
+    background(0);
+    if (startButton.rectOver()) {
+    rectColor = color(200,50,0);
+  }
+  
+  if (startButton.clicked()) {
+    background(255);
+    image(camera,0,0);
+    drawPoseNetParts(data);
+    measuringAngles(data);
+  }
+  
+}
+
    // update timer
   int currentMillis = millis();
   // if the difference between current millis and last time we checked past the wait time
@@ -91,23 +105,12 @@ void draw(){
     // update lastMillis, preparing for another wait
     lastMillis = currentMillis;
   }
-  background(0);
-  image(camera,0,0);
+
   // manually draw PoseNet parts
-  drawPoseNetParts(data);
-  measuringAngles(data);
   
-  if (startButton.rectOver()) {
-    rectColor = color(200,50,0);
-  }
-  
-  if (startButton.clicked()) {
-    background(255);
-    drawPoseNetParts(data);
-    measuringAngles(data);
-  }
-  
-}
+// drawPoseNetParts(data);
+// measuringAngles(data);
+ 
 
 void sendFrameToRunway(){
   // nothing to send if there's no new camera data available
