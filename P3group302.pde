@@ -93,8 +93,6 @@ void draw(){
     drawPoseNetParts(data);
     measuringAngles(data);
   }
-  
-}
 
    // update timer
   int currentMillis = millis();
