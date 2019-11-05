@@ -1,9 +1,12 @@
 // code example for drawing lines
 
+import oscP5.*;
+// import video library
+import processing.video.*;
 // import Runway library
 import com.runwayml.*;
 // reference to runway instance
-RunwayHTTP runway;
+RunwayOSC runway;
 
 // This array will hold all the humans detected
 JSONObject data;
@@ -45,6 +48,15 @@ int[][] angles = {
   {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_RIGHT_KNEE_INDEX}
 };
 
+//reference to the camera
+Capture camera;
+
+// periocally to be updated using millis()
+int lastMillis;
+// how often should the above be updated and a time action take place ?
+// takes about 100-200ms for Runway to process a 600x400 PoseNet frame
+int waitTime = 210;
+
 void setup(){
   // match sketch size to default model camera setup
   size(600,400);
@@ -52,14 +64,42 @@ void setup(){
   stroke(#E1FF03);
   strokeWeight(3);
   // setup Runway
-  runway = new RunwayHTTP(this);
+  runway = new RunwayOSC(this);
+   // setup camera
+  camera = new Capture(this,640,480);
+  camera.start();
+  // setup timer
+  lastMillis = millis();
 }
 
 void draw(){
+   // update timer
+  int currentMillis = millis();
+  // if the difference between current millis and last time we checked past the wait time
+  if(currentMillis - lastMillis >= waitTime){
+    // call the timed function
+    sendFrameToRunway();
+    // update lastMillis, preparing for another wait
+    lastMillis = currentMillis;
+  }
   background(0);
+  image(camera,0,0);
   // manually draw PoseNet parts
   drawPoseNetParts(data);
   measuringAngles(data);
+}
+
+void sendFrameToRunway(){
+  // nothing to send if there's no new camera data available
+  if(camera.available() == false){
+    return;
+  }
+  // read a new frame
+  camera.read();
+  // crop image to Runway input format (600x400)
+  PImage image = camera.get(0,0,600,400);
+  // query Runway with webcam image 
+  runway.query(image);
 }
 
 void drawPoseNetParts(JSONObject data){
