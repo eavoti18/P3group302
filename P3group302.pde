@@ -105,6 +105,7 @@ void draw(){
     // update lastMillis, preparing for another wait
     lastMillis = currentMillis;
   }
+  }
 
   // manually draw PoseNet parts
   
