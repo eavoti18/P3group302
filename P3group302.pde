@@ -1,4 +1,9 @@
-// code example for drawing lines
+Button startButton;
+  int buttonX = 50;
+  int buttonY = 50;
+  int buttonW = 100;
+  int buttonH = 100;
+  
 
 import oscP5.*;
 // import video library
@@ -59,7 +64,8 @@ int waitTime = 210;
 
 void setup(){
   // match sketch size to default model camera setup
-  size(600,400);
+    background(0);
+    size(600,400);
   // change default black stroke
   stroke(#E1FF03);
   strokeWeight(3);
@@ -70,6 +76,9 @@ void setup(){
   camera.start();
   // setup timer
   lastMillis = millis();
+  
+  
+  startButton = new Button(buttonX, buttonX+buttonW, buttonY, buttonH);
 }
 
 void draw(){
@@ -87,6 +96,17 @@ void draw(){
   // manually draw PoseNet parts
   drawPoseNetParts(data);
   measuringAngles(data);
+  
+  if (startButton.rectOver()) {
+    rectColor = color(200,50,0);
+  }
+  
+  if (startButton.clicked()) {
+    background(255);
+    drawPoseNetParts(data);
+    measuringAngles(data);
+  }
+  
 }
 
 void sendFrameToRunway(){
@@ -100,79 +120,6 @@ void sendFrameToRunway(){
   PImage image = camera.get(0,0,600,400);
   // query Runway with webcam image 
   runway.query(image);
-}
-
-void drawPoseNetParts(JSONObject data){
-  // Only if there are any humans detected
-  if (data != null) {
-    JSONArray humans = data.getJSONArray("poses");
-    for(int h = 0; h < humans.size(); h++) {
-      JSONArray keypoints = humans.getJSONArray(h);
-      // Now that we have one human, let's draw its body parts
-      for(int i = 0 ; i < connections.length; i++){
-        
-        JSONArray startPart = keypoints.getJSONArray(connections[i][0]);
-        JSONArray endPart   = keypoints.getJSONArray(connections[i][1]);
-        // extract floats fron JSON array and scale normalized value to sketch size
-        float startX = startPart.getFloat(0) * width;
-        float startY = startPart.getFloat(1) * height;
-        float endX   = endPart.getFloat(0) * width;
-        float endY   = endPart.getFloat(1) * height; 
-        line(startX,startY,endX,endY);
-      }
-    }
-  }
-}
-
-void measuringAngles(JSONObject data){
-  if (data != null) {
-    JSONArray humans = data.getJSONArray("poses");
-    for(int h = 0; h < humans.size(); h++) {
-        JSONArray keypoints = humans.getJSONArray(h);
-        for(int r = 0 ; r < angles.length; r++){
-           JSONArray anglesone = keypoints.getJSONArray(angles[r][0]);
-           JSONArray anglestwo = keypoints.getJSONArray(angles[r][1]);
-           JSONArray anglesthree = keypoints.getJSONArray(angles[r][2]);
-           float ax = anglesone.getFloat(0) * width;
-           float ay = anglesone.getFloat(1) * height;
-           float bx = anglestwo.getFloat(0) * width;
-           float by = anglestwo.getFloat(1) * height;
-           float cx = anglesthree.getFloat(0) * width;
-           float cy = anglesthree.getFloat(1) * height;
-  
-  float sideA = dist(bx, by, cx, cy);
-  float sideB = dist(cx, cy, ax, ay);
-  float sideC = dist(ax, ay, bx, by);
-  
-  println("side a: " + sideA);
-  println("side b: " + sideB);
-  println("side c: " + sideC);
-  
-  float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
- println("cosA: " + cosA);
- float angleA = RAD_TO_DEG * acos(cosA);
- println("angle A: " + angleA);
- text("angle A: " + angleA, ax, ay-15);
- 
- float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
- float angleB = RAD_TO_DEG * acos(cosB);
- println("angle B: " + angleB);
- text("angle B: " + angleB, bx, by-15);
- 
- float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
- println("cosC: " + cosC);
- float angleC = RAD_TO_DEG * acos(cosC);
- println("angle C: " + angleC);
- text("angle C: " + angleC, cx, cy-15);
- 
- float sum = angleA + angleB + angleC;
- println("Sum of angles: " + sum);
-  
-          }
-    }
-  }
-
 }
 
 // this is called when new Runway data is available
