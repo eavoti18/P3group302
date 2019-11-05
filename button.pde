@@ -14,7 +14,7 @@ class Button {
     y1 = Y1;
     y2 = Y2;
     
-   rectColor = color(255,0,0);  
+   fill(255,0,0);  
    rect(x1,y1,x2,y2);
    
   }
