@@ -28,8 +28,8 @@ void measuringAngles(JSONObject data){
  println("angle A: " + angleA);
  text("angle A: " + angleA, ax, ay-15);
  
-if(angleA<60){
-  fill(0,0, 255); 
+if(angleA<45){
+  fill(0,255,0); 
 }
 else{
  fill(255,0,0); 
@@ -44,7 +44,7 @@ else{
  println("angle B: " + angleB);
  text("angle B: " + angleB, bx, by-15);
  
- if(angleB<60){
+ if(angleB<80){
   fill(0,255, 0); 
 }
 else{
