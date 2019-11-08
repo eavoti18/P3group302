@@ -28,11 +28,31 @@ void measuringAngles(JSONObject data){
  println("angle A: " + angleA);
  text("angle A: " + angleA, ax, ay-15);
  
+if(angleA<60){
+  fill(0,0, 255); 
+}
+else{
+ fill(255,0,0); 
+}
+ 
+ ellipse(ax, ay, 30, 30);
+
+ 
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
  println("cosB: " + cosB);
  float angleB = RAD_TO_DEG * acos(cosB);
  println("angle B: " + angleB);
  text("angle B: " + angleB, bx, by-15);
+ 
+ if(angleB<60){
+  fill(0,255, 0); 
+}
+else{
+ fill(255,0,0); 
+}
+ 
+ ellipse(bx, by, 30, 30);
+
  
  float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
  println("cosC: " + cosC);

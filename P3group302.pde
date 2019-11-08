@@ -15,7 +15,7 @@ RunwayOSC runway;
 
 // This array will hold all the humans detected
 JSONObject data;
-
+ 
 // This are the pair of body connections we want to form. 
 // Try creating new ones!
 int[][] connections = {
@@ -92,6 +92,7 @@ void draw(){
     image(camera,0,0);
     drawPoseNetParts(data);
     measuringAngles(data);
+    
   }
 
    // update timer
