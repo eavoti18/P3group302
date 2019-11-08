@@ -22,13 +22,13 @@ void measuringAngles(JSONObject data){
   println("side b: " + sideB);
   println("side c: " + sideC);
   
-  float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
+/*  float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
  println("cosA: " + cosA);
  
  float angleA = RAD_TO_DEG * acos(cosA);
   int roundAngleA = round(angleA);
  println("angle A: " + roundAngleA);
- text("angle A: " + roundAngleA, ax, ay-15);
+ text("angle A: " + roundAngleA, ax, ay-15);*/
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
  println("cosB: " + cosB);
@@ -49,7 +49,7 @@ else{
  ellipse(bx, by, 10, 10);
 
  
- float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
+/* float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
  println("cosC: " + cosC);
  float angleC = RAD_TO_DEG * acos(cosC);
     int roundAngleC = round(angleC);
@@ -57,7 +57,7 @@ else{
  text("angle C: " + roundAngleC, cx, cy-15);
  
  float sum = angleA + angleB + angleC;
- println("Sum of angles: " + sum);
+ println("Sum of angles: " + sum);*/
   
           }
     }
