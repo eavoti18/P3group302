@@ -87,7 +87,7 @@ int waitTime = 210;
 void setup(){
   // match sketch size to default model camera setup
     background(0);
-    size(1070,700);
+    size(600,400);
   // change default black stroke
   stroke(#E1FF03);
   strokeWeight(3);

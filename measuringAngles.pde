@@ -22,6 +22,13 @@ void measuringAngles(JSONObject data){
   println("side b: " + sideB);
   println("side c: " + sideC);
   
+  //Joint color function;
+  int jointSize = 10;
+  int colorRed = 100;
+  int colorGreen = 100;
+  int colorBlue = 100;
+  
+ 
  /* float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
  println("cosA: " + cosA);
  float angleA = RAD_TO_DEG * acos(cosA);
@@ -39,20 +46,35 @@ else{
 
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ //println("cosB: " + cosB);
  float angleB = RAD_TO_DEG * acos(cosB);
   int roundAngleB = round(angleB);
- println("angle B: " + roundAngleB);
- text("angle B: " + roundAngleB, bx, by-15);
+ //println("angle B: " + roundAngleB);
+ //text("angle B: " + roundAngleB, bx, by-15);
  
- if(angleB > 110  && angleB < 180){
-  fill(0,255, 0); 
+ //coloring the joints
+ if(angleB > 110  && angleB < 130){
+   colorBlue= 0;
+   colorRed = 0;
+   colorGreen++;
+  fill(colorRed, colorGreen, colorBlue); 
+}
+ if(angleB > 90  && angleB < 109){
+   colorBlue= 0;
+   colorRed ++;
+   colorGreen ++;
+  fill(colorRed, colorGreen, colorBlue); 
+}
+  if(angleB > 0  && angleB < 89){
+   colorBlue= 0;
+   colorRed ++;
+   colorGreen --;
+  fill(colorRed, colorGreen, colorBlue); 
 }
 else{
- fill(255,0,0); 
+ fill(colorRed,colorGreen, colorBlue); 
 }
- 
- ellipse(bx, by, 10, 10);
+ ellipse(bx, by, jointSize, jointSize);
 
  
  /*float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
