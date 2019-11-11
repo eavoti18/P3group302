@@ -34,7 +34,7 @@ void measuringAngles(JSONObject data){
  println("cosB: " + cosB);
  
  float angleB = RAD_TO_DEG * acos(cosB);
-   int roundAngleB = round(angleB);
+   int roundAngleB = round(angleA);
    
  println("angle B: " + roundAngleB);
  text("angle B: " + roundAngleB, bx, by-15);
@@ -52,7 +52,7 @@ else{
  float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
  println("cosC: " + cosC);
  float angleC = RAD_TO_DEG * acos(cosC);
-    int roundAngleC = round(angleC);
+    int roundAngleC = round(angleA);
  println("angle C: " + roundAngleC);
  text("angle C: " + roundAngleC, cx, cy-15);
  
