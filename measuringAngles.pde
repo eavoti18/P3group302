@@ -22,7 +22,7 @@ void measuringAngles(JSONObject data){
   println("side b: " + sideB);
   println("side c: " + sideC);
   
-  float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
+ /* float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
  println("cosA: " + cosA);
  float angleA = RAD_TO_DEG * acos(cosA);
  println("angle A: " + angleA);
@@ -35,33 +35,34 @@ else{
  fill(255,0,0); 
 }
  
- ellipse(ax, ay, 30, 30);
+ ellipse(ax, ay, 30, 30);*/
 
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
  println("cosB: " + cosB);
  float angleB = RAD_TO_DEG * acos(cosB);
- println("angle B: " + angleB);
- text("angle B: " + angleB, bx, by-15);
+  int roundAngleB = round(angleB);
+ println("angle B: " + roundAngleB);
+ text("angle B: " + roundAngleB, bx, by-15);
  
- if(angleB<80){
+ if(angleB > 110  && angleB < 180){
   fill(0,255, 0); 
 }
 else{
  fill(255,0,0); 
 }
  
- ellipse(bx, by, 30, 30);
+ ellipse(bx, by, 10, 10);
 
  
- float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
+ /*float cosC = (sq(sideA) + sq(sideB) - sq(sideC)) / (2 * sideA * sideB);
  println("cosC: " + cosC);
  float angleC = RAD_TO_DEG * acos(cosC);
  println("angle C: " + angleC);
  text("angle C: " + angleC, cx, cy-15);
  
  float sum = angleA + angleB + angleC;
- println("Sum of angles: " + sum);
+ println("Sum of angles: " + sum);*/
   
           }
     }

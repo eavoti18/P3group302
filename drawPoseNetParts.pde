@@ -14,6 +14,8 @@ void drawPoseNetParts(JSONObject data){
         float startY = startPart.getFloat(1) * height;
         float endX   = endPart.getFloat(0) * width;
         float endY   = endPart.getFloat(1) * height; 
+        stroke(#E1FF03);
+        strokeWeight(1);
         line(startX,startY,endX,endY);
       }
     }
