@@ -1,3 +1,10 @@
+Button startButton;
+  int buttonX = 50;
+  int buttonY = 50;
+  int buttonW = 100;
+  int buttonH = 100;
+  
+
 import oscP5.*;
 // import video library
 import processing.video.*;
@@ -59,6 +66,9 @@ void setup(){
   // match sketch size to default model camera setup
     background(0);
     size(600,400);
+  // change default black stroke
+  stroke(#E1FF03);
+  strokeWeight(3);
   // setup Runway
   runway = new RunwayOSC(this);
    // setup camera
@@ -66,13 +76,24 @@ void setup(){
   camera.start();
   // setup timer
   lastMillis = millis();
+  
+  
+  startButton = new Button(buttonX, buttonX+buttonW, buttonY, buttonH);
 }
 
 void draw(){
     background(0);
- 
+    if (startButton.rectOver()) {
+    rectColor = color(200,50,0);
+  }
+  
+  if (startButton.clicked()) {
+    background(255);
+    image(camera,0,0);
     drawPoseNetParts(data);
     measuringAngles(data);
+    
+  }
 
    // update timer
   int currentMillis = millis();
@@ -83,9 +104,14 @@ void draw(){
     // update lastMillis, preparing for another wait
     lastMillis = currentMillis;
   }
-  
   }
+
+  // manually draw PoseNet parts
+  
+// drawPoseNetParts(data);
+// measuringAngles(data);
  
+
 void sendFrameToRunway(){
   // nothing to send if there's no new camera data available
   if(camera.available() == false){
