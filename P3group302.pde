@@ -3,7 +3,8 @@ Button startButton;
   int buttonY = 50;
   int buttonW = 100;
   int buttonH = 100;
-  
+ import processing.video.*;
+ import com.hamoid.*;
 
 import oscP5.*;
 // import video library
@@ -12,6 +13,9 @@ import processing.video.*;
 import com.runwayml.*;
 // reference to runway instance
 RunwayOSC runway;
+
+VideoExport videoExport;
+Movie movie;
 
 // This array will hold all the humans detected
 JSONObject data;
@@ -88,7 +92,7 @@ void setup(){
   // match sketch size to default model camera setup
     background(0);
     size(600,400);
-    frameRate(40);
+    frameRate(35);
   // change default black stroke
   stroke(#E1FF03);
   strokeWeight(3);
@@ -102,6 +106,9 @@ void setup(){
   
   
   startButton = new Button(buttonX, buttonX+buttonW, buttonY, buttonH);
+  
+  videoExport = new VideoExport(this, "data/camera.mp4");
+  videoExport.startMovie();
 }
 
 void draw(){
@@ -127,12 +134,21 @@ void draw(){
     // update lastMillis, preparing for another wait
     lastMillis = currentMillis;
   }
+  videoExport.saveFrame();
   }
 
   // manually draw PoseNet parts
   
 // drawPoseNetParts(data);
 // measuringAngles(data);
+
+void keyPressed(){
+if(key=='q'){
+videoExport.endMovie();
+exit();
+}
+
+}
  
 
 void sendFrameToRunway(){
