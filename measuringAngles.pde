@@ -30,11 +30,11 @@ void measuringAngles(JSONObject data){
   
   // Feedback pictures and strings
   PImage red;
-   red = loadImage("RedWar.png");
+   red = loadImage("Images/redWar.png");
   PImage yellow;
-   //yellow = loadImage("laDefense.jpg");
+   yellow = loadImage("Images/yellowWar.png");
   PImage green;
-   //img = loadImage("laDefense.jpg");
+   green = loadImage("Images/greenWar.png");
  
  /* float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
  println("cosA: " + cosA);
@@ -66,6 +66,7 @@ else{
    colorRed = 100-i;
    colorGreen= 100+i;
  //  println("You might not yet have peformed a squat, try go deeper!");
+ image(green, 0, 0, width/10, height/10);
   fill(colorRed, colorGreen, colorBlue);
    }
 }
@@ -75,6 +76,7 @@ else{
    colorRed= 100+i;
    colorGreen= 100+i;
    // println("You are doing it great, try aim for this lenght at every squat");
+   image(yellow, 0, 0, width/10, height/10);
   fill(colorRed, colorGreen, colorBlue);
    }
 }
