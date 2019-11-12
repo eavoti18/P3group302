@@ -28,6 +28,13 @@ void measuringAngles(JSONObject data){
   int colorGreen = 100;
   int colorBlue = 100;
   
+  // Feedback pictures and strings
+  PImage red;
+   red = loadImage("RedWar.png");
+  PImage yellow;
+   //yellow = loadImage("laDefense.jpg");
+  PImage green;
+   //img = loadImage("laDefense.jpg");
  
  /* float cosA = (sq(sideB) + sq(sideC) - sq(sideA)) / (2 * sideB * sideC);
  println("cosA: " + cosA);
@@ -56,20 +63,25 @@ else{
  if(angleB > 110  && angleB < 130){
    colorBlue= 0;
    colorRed = 0;
-   colorGreen++;
+   colorGreen= 200;
+ //  println("You might not yet have peformed a squat, try go deeper!");
   fill(colorRed, colorGreen, colorBlue); 
 }
  if(angleB > 90  && angleB < 109){
    colorBlue= 0;
-   colorRed ++;
-   colorGreen ++;
+   colorRed= 200;
+   colorGreen= 200;
+   // println("You are doing it great, try aim for this lenght at every squat");
   fill(colorRed, colorGreen, colorBlue); 
 }
   if(angleB > 0  && angleB < 89){
    colorBlue= 0;
-   colorRed ++;
-   colorGreen --;
+   colorRed = 255;
+   colorGreen = 0;
+  // println("You might have gone too deep into the squat, try not going so deep!");
+   image(red, 0, 0, width/10, height/10);
   fill(colorRed, colorGreen, colorBlue); 
+  
 }
 else{
  fill(colorRed,colorGreen, colorBlue); 
@@ -85,6 +97,17 @@ else{
  
  float sum = angleA + angleB + angleC;
  println("Sum of angles: " + sum);*/
+ 
+ //Feedback
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
           }
     }
