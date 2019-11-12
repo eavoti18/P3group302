@@ -88,6 +88,7 @@ void setup(){
   // match sketch size to default model camera setup
     background(0);
     size(600,400);
+    frameRate(40);
   // change default black stroke
   stroke(#E1FF03);
   strokeWeight(3);
