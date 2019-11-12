@@ -61,27 +61,32 @@ else{
  
  //coloring the joints
  if(angleB > 110  && angleB < 130){
-   colorBlue= 0;
-   colorRed = 0;
-   colorGreen= 200;
+   for(int i=0; i<255;i++){
+   colorBlue= 100-i;
+   colorRed = 100-i;
+   colorGreen= 100+i;
  //  println("You might not yet have peformed a squat, try go deeper!");
-  fill(colorRed, colorGreen, colorBlue); 
+  fill(colorRed, colorGreen, colorBlue);
+   }
 }
  if(angleB > 90  && angleB < 109){
-   colorBlue= 0;
-   colorRed= 200;
-   colorGreen= 200;
+   for(int i=0; i<255;i++){
+   colorBlue= 100-i;
+   colorRed= 100+i;
+   colorGreen= 100+i;
    // println("You are doing it great, try aim for this lenght at every squat");
-  fill(colorRed, colorGreen, colorBlue); 
+  fill(colorRed, colorGreen, colorBlue);
+   }
 }
   if(angleB > 0  && angleB < 89){
-   colorBlue= 0;
-   colorRed = 255;
-   colorGreen = 0;
+    for(int i=0; i<255; i++){
+   colorBlue= 100-i;
+   colorRed = 100+i;
+   colorGreen = 100-i;
   // println("You might have gone too deep into the squat, try not going so deep!");
    image(red, 0, 0, width/10, height/10);
   fill(colorRed, colorGreen, colorBlue); 
-  
+    }
 }
 else{
  fill(colorRed,colorGreen, colorBlue); 
