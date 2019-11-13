@@ -28,6 +28,7 @@ void measuringAngles(JSONObject data){
   int colorGreen = 100;
   int colorBlue = 100;
   
+  //Redundant comment
   // Feedback pictures and strings
   PImage red;
    red = loadImage("Images/redWar.PNG");
