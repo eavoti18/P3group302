@@ -88,9 +88,16 @@ int lastMillis;
 // takes about 100-200ms for Runway to process a 600x400 PoseNet frame
 int waitTime = 210;
 
+//state used to change screens in the program
+int state = 1;
+
+//the background image
+PImage backgroundImage;
+
 void setup(){
   // match sketch size to default model camera setup
-    background(0);
+    //background(0);
+    backgroundImage = loadImage("Images/startscreen.png");
     size(600,400);
     frameRate(35);
   // change default black stroke
@@ -112,29 +119,44 @@ void setup(){
 }
 
 void draw(){
-    background(0);
-    if (startButton.rectOver()) {
-    rectColor = color(200,50,0);
-  }
-  
-  if (startButton.clicked()) {
-    background(255);
-    image(camera,0,0);
-    drawPoseNetParts(data);
-    measuringAngles(data);
+    //background(0);
+    image(backgroundImage, 0, 0, width, height);
     
-  }
+    //changing states
+    if(state == 1){ //state 1 is the start screen
+      backgroundImage = loadImage("Images/startscreen.png");
+    }
+    if(state == 2){ //state 2 is the professional video and guide
+      backgroundImage = loadImage("Images/profvid.png");
+    }
+    if(state == 3){ //state 3 is the exercise part
+      background(0);
+       if (startButton.rectOver()) {
+          rectColor = color(200,50,0);
+        }
+  
+        if (startButton.clicked()) {
+            background(255);
+            image(camera,0,0);
+            drawPoseNetParts(data);
+            measuringAngles(data);
+    
+        }
 
-   // update timer
-  int currentMillis = millis();
-  // if the difference between current millis and last time we checked past the wait time
-  if(currentMillis - lastMillis >= waitTime){
-    // call the timed function
-    sendFrameToRunway();
-    // update lastMillis, preparing for another wait
-    lastMillis = currentMillis;
-  }
-  videoExport.saveFrame();
+         // update timer
+          int currentMillis = millis();
+          // if the difference between current millis and last time we checked past the wait time
+       if(currentMillis - lastMillis >= waitTime){
+          // call the timed function
+          sendFrameToRunway();
+          // update lastMillis, preparing for another wait
+          lastMillis = currentMillis;
+        }
+      videoExport.saveFrame();
+    }
+    if(state == 4){ //state 4 is the end screen
+      backgroundImage = loadImage("Images/endscreen.png");
+    }
   }
 
   // manually draw PoseNet parts
@@ -179,4 +201,27 @@ public void runwayInfoEvent(JSONObject info){
 // if anything goes wrong
 public void runwayErrorEvent(String message){
   println(message);
+}
+
+void mouseClicked(){
+  //Click on begin it goes to the prof video screen.
+  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+    state = 2;
+  }
+  //click on I'm ready to go to exercise part
+  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+  state = 3;
+  }
+  //go to end screen (maybe should be changed)
+  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+  state = 4;
+  }
+  //go from end screen to start screen
+  else if(state == 4 && mouseX > 0 && mouseX < width/2 && mouseY > 300 && mouseY < height){
+  state = 1;
+  }
+  //exit program
+  else if(state == 4 && mouseX > width/2 && mouseX < width && mouseY > 300 && mouseY < height){
+  exit();
+  }
 }
