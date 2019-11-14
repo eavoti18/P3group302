@@ -3,7 +3,7 @@ Button startButton;
   int buttonY = 50;
   int buttonW = 100;
   int buttonH = 100;
- import processing.video.*;
+
  import com.hamoid.*;
 
 import oscP5.*;

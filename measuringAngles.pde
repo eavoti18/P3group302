@@ -7,7 +7,11 @@
    int imageSize=100;
    int imageLoc = 10;
    
-    // Feedback pictures and strings
+   
+  
+   
+void measuringAngles(JSONObject data){
+   // Feedback pictures and strings
   PImage red;
    red = loadImage("Images/redWar.PNG");
   PImage yellow;
@@ -15,8 +19,6 @@
   PImage green;
    green = loadImage("Images/greenWar.PNG");
    
-   
-void measuringAngles(JSONObject data){
   if (data != null) {
     JSONArray humans = data.getJSONArray("poses");
     for(int h = 0; h < humans.size(); h++) {
@@ -67,9 +69,7 @@ void measuringAngles(JSONObject data){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-
- if(roundAngleElbow1 > 90  && roundAngleElbow1 < 109){
+}else if(roundAngleElbow1 > 90  && roundAngleElbow1 < 109){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
    colorRed= 100+i;
@@ -78,8 +78,7 @@ void measuringAngles(JSONObject data){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-  if(roundAngleElbow1 > 0  && roundAngleElbow1 < 89){
+}else if(roundAngleElbow1 > 0  && roundAngleElbow1 < 89){
     for(int i=0; i<255; i++){
    colorBlue= 100-i;
    colorRed = 100+i;
@@ -140,9 +139,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   noStroke();
   image(green, imageLoc, imageLoc, imageSize, imageSize);
    }
-}
-
- if(roundAngleKnee2 > 90  && roundAngleKnee2 < 109){
+}else if(roundAngleKnee2 > 90  && roundAngleKnee2 < 109){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
    colorRed= 100+i;
@@ -152,8 +149,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   noStroke();
   image(yellow, imageLoc, imageLoc, imageSize, imageSize);
    }
-}
-  if(roundAngleKnee2 > 0  && roundAngleKnee2 < 89){
+}else if(roundAngleKnee2 > 0  && roundAngleKnee2 < 89){
     for(int i=0; i<255; i++){
    colorBlue= 100-i;
    colorRed = 100+i;
@@ -214,9 +210,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-
- if(roundAngleHip3 > 90  && roundAngleHip3 < 109){
+}else if(roundAngleHip3 > 90  && roundAngleHip3 < 109){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
    colorRed= 100+i;
@@ -225,8 +219,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-  if(roundAngleHip3 > 0  && roundAngleHip3 < 89){
+}else if(roundAngleHip3 > 0  && roundAngleHip3 < 89){
     for(int i=0; i<255; i++){
    colorBlue= 100-i;
    colorRed = 100+i;
@@ -287,9 +280,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-
- if(roundAngleShoulder4 > 90  && roundAngleShoulder4 < 109){
+}else if(roundAngleShoulder4 > 90  && roundAngleShoulder4 < 109){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
    colorRed= 100+i;
@@ -298,8 +289,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-  if(roundAngleShoulder4 > 0  && roundAngleShoulder4 < 89){
+}else if(roundAngleShoulder4 > 0  && roundAngleShoulder4 < 89){
     for(int i=0; i<255; i++){
    colorBlue= 100-i;
    colorRed = 100+i;
@@ -358,9 +348,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-
- if(roundAngleHip5 > 90  && roundAngleHip5 < 109){
+}else if(roundAngleHip5 > 90  && roundAngleHip5 < 109){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
    colorRed= 100+i;
@@ -369,8 +357,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   fill(colorRed, colorGreen, colorBlue); 
   noStroke();
    }
-}
-  if(roundAngleHip5 > 0  && roundAngleHip5 < 89){
+}else if(roundAngleHip5 > 0  && roundAngleHip5 < 89){
     for(int i=0; i<255; i++){
    colorBlue= 100-i;
    colorRed = 100+i;
