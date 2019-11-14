@@ -3,8 +3,7 @@ Button startButton;
   int buttonY = 50;
   int buttonW = 100;
   int buttonH = 100;
- import processing.video.*;
- import com.hamoid.*;
+  
 
 import oscP5.*;
 // import video library
@@ -14,9 +13,6 @@ import com.runwayml.*;
 // reference to runway instance
 RunwayOSC runway;
 
-VideoExport videoExport;
-Movie movie;
-
 // This array will hold all the humans detected
 JSONObject data;
  
@@ -24,9 +20,7 @@ JSONObject data;
 // Try creating new ones!
 int[][] connections = {
   {ModelUtils.POSE_NOSE_INDEX, ModelUtils.POSE_LEFT_EYE_INDEX},
-  {ModelUtils.POSE_LEFT_EYE_INDEX, ModelUtils.POSE_LEFT_EAR_INDEX},
   {ModelUtils.POSE_NOSE_INDEX,ModelUtils.POSE_RIGHT_EYE_INDEX},
-  {ModelUtils.POSE_RIGHT_EYE_INDEX,ModelUtils.POSE_RIGHT_EAR_INDEX},
   
   // added >>>>>
   {ModelUtils.POSE_LEFT_SHOULDER_INDEX,ModelUtils.POSE_RIGHT_SHOULDER_INDEX},
@@ -45,33 +39,17 @@ int[][] connections = {
   {ModelUtils.POSE_LEFT_KNEE_INDEX,ModelUtils.POSE_LEFT_ANKLE_INDEX}
 };
 
-  // P3 >>>>>
-int[][] elbow = {
-  // 1 // shoulder - elbow - wrist
+int[][] angles = {
+  //shoulder - elbow - wrist
   {ModelUtils.POSE_LEFT_SHOULDER_INDEX,ModelUtils.POSE_LEFT_ELBOW_INDEX,ModelUtils.POSE_LEFT_WRIST_INDEX},
   {ModelUtils.POSE_RIGHT_SHOULDER_INDEX,ModelUtils.POSE_RIGHT_ELBOW_INDEX,ModelUtils.POSE_RIGHT_WRIST_INDEX},
-};
-int[][] knee = {
-  // 2 // hip - knee - ankle
+  //hip - knee - ankle
   {ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_LEFT_KNEE_INDEX, ModelUtils.POSE_LEFT_ANKLE_INDEX},
   {ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_RIGHT_KNEE_INDEX, ModelUtils.POSE_RIGHT_ANKLE_INDEX},
-};
-int[][] hip = {
-  // 3 // shoulder - hip - knee
+  //shoulder - hip - knee
   {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_LEFT_KNEE_INDEX},
-  {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_RIGHT_KNEE_INDEX},
+  {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_RIGHT_KNEE_INDEX}
 };
-int[][] shoulder = {
-  // 4 // elbow - shoulder - hip
-  {ModelUtils.POSE_LEFT_ELBOW_INDEX, ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX},
-  {ModelUtils.POSE_RIGHT_ELBOW_INDEX, ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX},
-};
-int[][] otherHip = {
-  // 5 // knee - hip - other hip
-  {ModelUtils.POSE_LEFT_KNEE_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX},
-  {ModelUtils.POSE_RIGHT_KNEE_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX},
-};
-  // P3 <<<<<
 
 //reference to the camera
 Capture camera;
@@ -80,20 +58,15 @@ Capture camera;
 int lastMillis;
 // how often should the above be updated and a time action take place ?
 // takes about 100-200ms for Runway to process a 600x400 PoseNet frame
-int waitTime = 210;
-
-//state used to change screens in the program
-int state = 1;
-
-//the background image
-PImage backgroundImage;
+int waitTime = 10;
 
 void setup(){
   // match sketch size to default model camera setup
-    //background(0);
-    backgroundImage = loadImage("Images/startscreen.png");
+    background(0);
     size(600,400);
-    frameRate(35);
+  // change default black stroke
+  stroke(#E1FF03);
+  strokeWeight(3);
   // setup Runway
   runway = new RunwayOSC(this);
    // setup camera
@@ -104,64 +77,37 @@ void setup(){
   
   
   startButton = new Button(buttonX, buttonX+buttonW, buttonY, buttonH);
-  
-  videoExport = new VideoExport(this, "data/camera.mp4");
-  videoExport.startMovie();
 }
 
 void draw(){
-    //background(0);
-    image(backgroundImage, 0, 0, width, height);
-    
-    //changing states
-    if(state == 1){ //state 1 is the start screen
-      backgroundImage = loadImage("Images/startscreen.png");
-    }
-    if(state == 2){ //state 2 is the professional video and guide
-      backgroundImage = loadImage("Images/profvid.png");
-    }
-    if(state == 3){ //state 3 is the exercise part
-      background(0);
-       if (startButton.rectOver()) {
-          rectColor = color(200,50,0);
-        }
+    background(0);
+    if (startButton.rectOver()) {
+    rectColor = color(200,50,0);
+  }
   
-        if (startButton.clicked()) {
-            background(255);
-            image(camera,0,0);
-            drawPoseNetParts(data);
-            measuringAngles(data);
+  if (startButton.clicked()) {
+    background(255);
+    image(camera,0,0);
+    drawPoseNetParts(data);
+    measuringAngles(data);
     
-        }
+  }
 
-         // update timer
-          int currentMillis = millis();
-          // if the difference between current millis and last time we checked past the wait time
-       if(currentMillis - lastMillis >= waitTime){
-          // call the timed function
-          sendFrameToRunway();
-          // update lastMillis, preparing for another wait
-          lastMillis = currentMillis;
-        }
-      videoExport.saveFrame();
-    }
-    if(state == 4){ //state 4 is the end screen
-      backgroundImage = loadImage("Images/endscreen.png");
-    }
+   // update timer
+  int currentMillis = millis();
+  // if the difference between current millis and last time we checked past the wait time
+  if(currentMillis - lastMillis >= waitTime){
+    // call the timed function
+    sendFrameToRunway();
+    // update lastMillis, preparing for another wait
+    lastMillis = currentMillis;
+  }
   }
 
   // manually draw PoseNet parts
   
 // drawPoseNetParts(data);
 // measuringAngles(data);
-
-void keyPressed(){
-if(key=='q'){
-videoExport.endMovie();
-exit();
-}
-
-}
  
 
 void sendFrameToRunway(){
@@ -192,27 +138,4 @@ public void runwayInfoEvent(JSONObject info){
 // if anything goes wrong
 public void runwayErrorEvent(String message){
   println(message);
-}
-
-void mouseClicked(){
-  //Click on begin it goes to the prof video screen.
-  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
-    state = 2;
-  }
-  //click on I'm ready to go to exercise part
-  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
-  state = 3;
-  }
-  //go to end screen (maybe should be changed)
-  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
-  state = 4;
-  }
-  //go from end screen to start screen
-  else if(state == 4 && mouseX > 0 && mouseX < width/2 && mouseY > 300 && mouseY < height){
-  state = 1;
-  }
-  //exit program
-  else if(state == 4 && mouseX > width/2 && mouseX < width && mouseY > 300 && mouseY < height){
-  exit();
-  }
 }
