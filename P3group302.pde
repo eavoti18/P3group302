@@ -1,8 +1,22 @@
+String runwayHost = "127.0.0.1";
+int runwayPort = 57100;
+
+import oscP5.*;
+import netP5.*;
+
+import videoExport;
+
+OscP5 oscP5;
+NetAddress myBroadcastLocation;
+
+
 Button startButton;
   int buttonX = 50;
   int buttonY = 50;
   int buttonW = 100;
   int buttonH = 100;
+  
+  
  import processing.video.*;
  import com.hamoid.*;
 
@@ -19,6 +33,7 @@ Movie movie;
 
 // This array will hold all the humans detected
 JSONObject data;
+JSONArray humans;
  
 // This are the pair of body connections we want to form. 
 // Try creating new ones!
@@ -91,10 +106,24 @@ PImage backgroundImage;
 void setup(){
   // match sketch size to default model camera setup
     //background(0);
-    backgroundImage = loadImage("Images/startscreen.png");
     size(600,400);
+    backgroundImage = loadImage("Images/startscreen.png");
     frameRate(35);
+    
+    
   // setup Runway
+  
+  OscProperties properties = new OscProperties();
+  properties.setRemoteAddress("127.0.0.1", 57200);
+  properties.setListeningPort(57200);
+  properties.setDatagramSize(99999999);
+  properties.setSRSP(OscProperties.ON);
+  oscP5 = new OscP5(this, properties);
+  
+  myBroadcastLocation = new NetAddress(runwayHost, runwayPort);
+  connect();
+  
+  
   runway = new RunwayOSC(this);
    // setup camera
   camera = new Capture(this,640,480);
@@ -160,7 +189,6 @@ if(key=='q'){
 videoExport.endMovie();
 exit();
 }
-
 }
  
 
@@ -192,6 +220,21 @@ public void runwayInfoEvent(JSONObject info){
 // if anything goes wrong
 public void runwayErrorEvent(String message){
   println(message);
+}
+
+void connect() {
+  OscMessage m = new OscMessage("/server/connect");
+  oscP5.send(m, myBroadcastLocation);
+}
+
+// OSC Event: listens to data coming from Runway
+void oscEvent(OscMessage theOscMessage) {
+  if (!theOscMessage.addrPattern().equals("/data")) return;
+  // The data is in a JSON string, so first we get the string value
+  String dataString = theOscMessage.get(0).stringValue();
+
+  // We then parse it as a JSONObject
+  data = parseJSONObject(dataString);
 }
 
 void mouseClicked(){

@@ -5,9 +5,10 @@
   int colorBlue = 100;
   
    int imageSize=100;
-   int imageLoc = 10;
+   int imageLoc = 10; 
    
-    // Feedback pictures and strings
+void measuringAngles(JSONObject data){
+  // Feedback pictures and strings
   PImage red;
    red = loadImage("Images/redWar.PNG");
   PImage yellow;
@@ -16,7 +17,6 @@
    green = loadImage("Images/greenWar.PNG");
    
    
-void measuringAngles(JSONObject data){
   if (data != null) {
     JSONArray humans = data.getJSONArray("poses");
     for(int h = 0; h < humans.size(); h++) {
