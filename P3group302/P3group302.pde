@@ -20,6 +20,7 @@ VideoExport videoExport;
 boolean recording = false; //status of recording
 int i = 0; //used for file name of the video
 //Movie movie;
+Movie squat;
 
 OscP5 oscP5Location1;
 NetAddress location2;
@@ -124,6 +125,9 @@ void setup(){
   //PATH 
   videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive"+ i +".mp4");
   videoExport.startMovie();
+  
+  squat = new Movie(this, "squat2.mp4");
+  squat.loop();
 }
 
 void draw(){
@@ -136,6 +140,7 @@ void draw(){
     }
     if(state == 2){ //state 2 is the professional video and guide
       backgroundImage = loadImage("Images/profvid.png");
+      image(squat,300,70,600,650);
     }
     if(state == 3){ //state 3 is the exercise part
       background(0);
@@ -252,4 +257,8 @@ void mouseClicked(){
   else if(state == 4 && mouseX > width/2 && mouseX < width && mouseY > 300 && mouseY < height){
   exit();
   }
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
