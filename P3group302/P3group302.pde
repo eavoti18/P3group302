@@ -120,7 +120,7 @@ void setup(){
   location2 = new NetAddress("127.0.0.1", 6001);
   noStroke();
   println("Press R to toggle recording");
-  //PATH CAT: "C:/Users/Catharina/Desktop/P3/processing2/data/interactive"+ i +".mp4"
+  //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive"+ i +".mp4"
   //PATH 
   videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive"+ i +".mp4");
   videoExport.startMovie();
