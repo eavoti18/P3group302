@@ -99,7 +99,7 @@ void setup(){
   // match sketch size to default model camera setup
     //background(0);
     backgroundImage = loadImage("Images/startscreen.png");
-    size(600,400);
+    size(1800,1000);
     frameRate(35);
   // setup Runway
   runway = new RunwayOSC(this);
