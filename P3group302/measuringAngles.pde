@@ -88,7 +88,8 @@ void measuringAngles(JSONObject data){
   noStroke();
     }
 } else {
-  fill (colorRed, colorGreen, colorBlue);
+  //fill (colorRed, colorGreen, colorBlue);
+  fill(#908F8F);
 }
 
  ellipse(bx, by, jointSize, jointSize);
@@ -160,7 +161,8 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   image(red, imageLoc, imageLoc, imageSize, imageSize);
     }
 } else {
-  fill (colorRed, colorGreen, colorBlue);
+  //fill (colorRed, colorGreen, colorBlue);
+  fill(#908F8F);
 }
 
  ellipse(bx, by, jointSize, jointSize);
@@ -229,7 +231,8 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   noStroke();
     }
 } else {
-  fill (colorRed, colorGreen, colorBlue);
+  //fill (colorRed, colorGreen, colorBlue);
+  fill(#908F8F);
 }
 
  ellipse(bx, by, jointSize, jointSize);
@@ -299,7 +302,8 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   noStroke();
     }
 } else {
-  fill (colorRed, colorGreen, colorBlue);
+  //fill (colorRed, colorGreen, colorBlue);
+  fill(#908F8F);
 }
  ellipse(bx, by, jointSize, jointSize);
           }
@@ -367,7 +371,8 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   noStroke();
     }
 } else {
-  fill (colorRed, colorGreen, colorBlue);
+  //fill (colorRed, colorGreen, colorBlue);
+  fill(#908F8F);
 }
  ellipse(bx, by, jointSize, jointSize);
            }

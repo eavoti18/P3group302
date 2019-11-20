@@ -5,6 +5,8 @@ Button startButton;
   int buttonH = 100;
 
  import com.hamoid.*;
+ //used for talking to other processing sketch
+import netP5.*;
 
 import oscP5.*;
 // import video library
@@ -15,7 +17,12 @@ import com.runwayml.*;
 RunwayOSC runway;
 
 VideoExport videoExport;
-Movie movie;
+boolean recording = false; //status of recording
+int i = 0; //used for file name of the video
+//Movie movie;
+
+OscP5 oscP5Location1;
+NetAddress location2;
 
 // This array will hold all the humans detected
 JSONObject data;
@@ -105,7 +112,17 @@ void setup(){
   
   startButton = new Button(buttonX, buttonX+buttonW, buttonY, buttonH);
   
-  videoExport = new VideoExport(this, "data/camera.mp4");
+ //videoExport = new VideoExport(this, "data/camera.mp4");
+ //videoExport.startMovie();
+  
+  //record and send info to other sketch
+  oscP5Location1 = new OscP5(this, 5001);
+  location2 = new NetAddress("127.0.0.1", 6001);
+  noStroke();
+  println("Press R to toggle recording");
+  //PATH CAT: "C:/Users/Catharina/Desktop/P3/processing2/data/interactive"+ i +".mp4"
+  //PATH 
+  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive"+ i +".mp4");
   videoExport.startMovie();
 }
 
@@ -143,11 +160,13 @@ void draw(){
           // update lastMillis, preparing for another wait
           lastMillis = currentMillis;
         }
+        if(recording){
       videoExport.saveFrame();
+        }
     }
-    if(state == 4){ //state 4 is the end screen
-      backgroundImage = loadImage("Images/endscreen.png");
-    }
+   // if(state == 4){ //state 4 is the end screen
+    //  backgroundImage = loadImage("Images/endscreen.png");
+    //}
   }
 
   // manually draw PoseNet parts
@@ -156,10 +175,28 @@ void draw(){
 // measuringAngles(data);
 
 void keyPressed(){
-if(key=='q'){
-videoExport.endMovie();
-exit();
-}
+//if(key=='q'){
+//videoExport.endMovie();
+//exit();
+//}
+   if(key == 'r' || key == 'R') {
+    recording = !recording;
+    println("Recording is " + (recording ? "ON" : "OFF"));
+  }
+  if (key == 'q') {
+    i++;
+    videoExport.dispose();
+    // videoExport.endMovie();
+    //exit();
+  }
+  if(key == 'm'){
+   println("m is pressed");
+   OscMessage myMessage = new OscMessage("/test");
+   myMessage.add("true");
+    oscP5Location1.send(myMessage, location2); 
+     println("Sending message." + myMessage);
+   exit();
+  }
 
 }
  
