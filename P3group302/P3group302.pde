@@ -100,12 +100,12 @@ void setup(){
   // match sketch size to default model camera setup
     //background(0);
     backgroundImage = loadImage("Images/startscreen.png");
-    size(960,540);
+    size(640,480);
     frameRate(45);
   // setup Runway
   runway = new RunwayOSC(this);
    // setup camera
-  camera = new Capture(this,960,540);
+  camera = new Capture(this,640,480);
   camera.start();
   // setup timer
   lastMillis = millis();
@@ -140,7 +140,7 @@ void draw(){
     }
     if(state == 2){ //state 2 is the professional video and guide
       backgroundImage = loadImage("Images/profvid.png");
-      image(squat,100,20,350,365);
+      image(squat,80,10,200,265);
     }
     if(state == 3){ //state 3 is the exercise part
       background(0);
@@ -214,7 +214,7 @@ void sendFrameToRunway(){
   // read a new frame
   camera.read();
   // crop image to Runway input format (600x400)
-  PImage image = camera.get(0,0,960,540);
+  PImage image = camera.get(0,0,640,480);
   // query Runway with webcam image 
   runway.query(image);
 }
@@ -238,15 +238,15 @@ public void runwayErrorEvent(String message){
 
 void mouseClicked(){
   //Click on begin it goes to the prof video screen.
-  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
+  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
     state = 2;
   }
   //click on I'm ready to go to exercise part
-  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
+  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
   state = 3;
   }
   //go to end screen (maybe should be changed)
-  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
+  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
   state = 4;
   }
   //go from end screen to start screen

@@ -25,7 +25,7 @@ void setup(){
   red = loadImage("Images/redWar.PNG");
   yellow = loadImage("Images/yellowWar.PNG");
   green = loadImage("Images/greenWar.PNG");
-  size(960,540);
+  size(640,480);
   frameRate(30);
 //background(0,255,0);
 
@@ -49,13 +49,17 @@ void draw(){
 
   if(playing == true){
     image(backgroundImage, 0, 0, width, height);
-    image(red, 20, 370, 150,150);
-    image(yellow, 20+165, 370, 150,150);
-    image(green, 20+330, 370, 150,150);
+    int sizex = 20;
+    int sizey = 320;
+    int size = 100;
+    image(red, sizex, sizey, size,size);
+    image(yellow, sizex+110, sizey, size,size);
+    image(green, sizex+220, sizey, size,size);
     println("inside keypressed true");
-  image(movie,20,20, 500, 340);
+    
+  image(movie,20,20, 400, 260);
   
-  image(squat,540,50,350,365);
+  image(squat,400,20,200,265);
   }
   }
 }
