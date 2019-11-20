@@ -238,15 +238,15 @@ public void runwayErrorEvent(String message){
 
 void mouseClicked(){
   //Click on begin it goes to the prof video screen.
-  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
     state = 2;
   }
   //click on I'm ready to go to exercise part
-  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
   state = 3;
   }
   //go to end screen (maybe should be changed)
-  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-100 && mouseY < height){
+  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-250 && mouseY < height){
   state = 4;
   }
   //go from end screen to start screen
