@@ -88,7 +88,7 @@ Capture camera;
 int lastMillis;
 // how often should the above be updated and a time action take place ?
 // takes about 100-200ms for Runway to process a 600x400 PoseNet frame
-int waitTime = 210;
+int waitTime = 125; //210
 
 //state used to change screens in the program
 int state = 1;

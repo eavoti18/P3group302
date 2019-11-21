@@ -44,10 +44,10 @@ void measuringAngles(JSONObject data){
   float sideB = dist(cx, cy, ax, ay);
   float sideC = dist(ax, ay, bx, by);
   
-  println("side b: " + sideB);
+  // println("side b: " + sideB);
   
    float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ // println("cosB: " + cosB);
  
 //
 // 1 // wrist - elbow - shoulder
@@ -55,7 +55,7 @@ void measuringAngles(JSONObject data){
 
  float angleElbow1 = RAD_TO_DEG * acos(cosB);
   int roundAngleElbow1 = round(angleElbow1);
- println("angle-elbow: " + roundAngleElbow1);
+ // println("angle-elbow: " + roundAngleElbow1);
  fill(#908F8F);
  //textSize(20);
      //text(roundAngleElbow1 + " °", bx, by-15); 
@@ -114,10 +114,10 @@ void measuringAngles(JSONObject data){
   float sideB = dist(cx, cy, ax, ay);
   float sideC = dist(ax, ay, bx, by);
   
-  println("side b: " + sideB);
+  // println("side b: " + sideB);
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ // println("cosB: " + cosB);
  
 //
 // 2 // hip - knee - ankle
@@ -125,7 +125,7 @@ void measuringAngles(JSONObject data){
 
  float angleKnee2 = RAD_TO_DEG * acos(cosB);
   int roundAngleKnee2 = round(angleKnee2);
- println("angle-knee: " + roundAngleKnee2);
+ // println("angle-knee: " + roundAngleKnee2);
  fill(#908F8F);
  //textSize(20);
      //text(roundAngleKnee2 + " °", bx, by-15);
@@ -187,10 +187,10 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   float sideB = dist(cx, cy, ax, ay);
   float sideC = dist(ax, ay, bx, by);
   
-  println("side b: " + sideB);
+  // println("side b: " + sideB);
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ // println("cosB: " + cosB);
  
 //
 // 3 // shoulder - hip - knee
@@ -198,7 +198,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
 
  float angleHip3 = RAD_TO_DEG * acos(cosB);
   int roundAngleHip3 = round(angleHip3);
- println("angle-knee: " + roundAngleHip3);
+ // println("angle-knee: " + roundAngleHip3);
  fill(#908F8F);
  //textSize(20);
  //text(roundAngleHip3 + " °", bx, by-15);
@@ -258,10 +258,10 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   float sideB = dist(cx, cy, ax, ay);
   float sideC = dist(ax, ay, bx, by);
   
-  println("side b: " + sideB);
+  // println("side b: " + sideB);
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ // println("cosB: " + cosB);
  
 //
 // 4 // elbow - shoulder - hip
@@ -269,7 +269,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
 
  float angleShoulder4 = RAD_TO_DEG * acos(cosB);
   int roundAngleShoulder4 = round(angleShoulder4);
- println("angle-shoulder" + roundAngleShoulder4);
+ // println("angle-shoulder" + roundAngleShoulder4);
  fill(#908F8F);
  //textSize(20);
  //text(roundAngleShoulder4 + " °", bx, by-15);
@@ -327,10 +327,10 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   float sideB = dist(cx, cy, ax, ay);
   float sideC = dist(ax, ay, bx, by);
   
-  println("side b: " + sideB);
+  // println("side b: " + sideB);
  
  float cosB = (sq(sideA) + sq(sideC) - sq(sideB)) / (2 * sideA * sideC);
- println("cosB: " + cosB);
+ // println("cosB: " + cosB);
  
 //
 // 5 // knee - hip - other hip 
@@ -338,7 +338,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
 
  float angleHip5 = RAD_TO_DEG * acos(cosB);
   int roundAngleHip5 = round(angleHip5);
- println("angle-hip" + roundAngleHip5);
+ // println("angle-hip" + roundAngleHip5);
  fill(#908F8F);
  //textSize(20);
  //text(roundAngleHip5 + " °", bx, by-15);
