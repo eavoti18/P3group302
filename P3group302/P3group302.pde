@@ -238,25 +238,25 @@ public void runwayErrorEvent(String message){
 
 void mouseClicked(){
   //Click on begin it goes to the prof video screen.
-  if(state == 1 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
+  if(state == 1 && mouseX > 455 && mouseX < 570 && mouseY > 340 && mouseY < 390){
     state = 2;
   }
   //click on I'm ready to go to exercise part
-  else if(state == 2 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
+  else if(state == 2 && mouseX > 260 && mouseX < 375 && mouseY > 345 && mouseY < 388){
   state = 3;
   }
-  //go to end screen (maybe should be changed)
-  else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
-  state = 4;
-  }
-  //go from end screen to start screen
-  else if(state == 4 && mouseX > 0 && mouseX < width/2 && mouseY > 300 && mouseY < height){
-  state = 1;
-  }
-  //exit program
-  else if(state == 4 && mouseX > width/2 && mouseX < width && mouseY > 300 && mouseY < height){
-  exit();
-  }
+  ////go to end screen (maybe should be changed)
+  //else if(state == 3 && mouseX > 0 && mouseX < width && mouseY > height-150 && mouseY < height){
+  //state = 4;
+  //}
+  ////go from end screen to start screen
+  //else if(state == 4 && mouseX > 0 && mouseX < width/2 && mouseY > 300 && mouseY < height){
+  //state = 1;
+  //}
+  ////exit program
+  //else if(state == 4 && mouseX > width/2 && mouseX < width && mouseY > 300 && mouseY < height){
+  //exit();
+  //}
 }
 
 void movieEvent(Movie m) {

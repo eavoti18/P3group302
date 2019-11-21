@@ -16,15 +16,15 @@ PImage backgroundImage;
 Movie squat;
 
 //images with warnings
-PImage red;
-PImage yellow;
-PImage green;
+//PImage red;
+//PImage yellow;
+//PImage green;
 
 void setup(){
   backgroundImage = loadImage("Images/endscreen.png");
-  red = loadImage("Images/redWar.PNG");
-  yellow = loadImage("Images/yellowWar.PNG");
-  green = loadImage("Images/greenWar.PNG");
+  //red = loadImage("Images/redWar.PNG");
+  //yellow = loadImage("Images/yellowWar.PNG");
+  //green = loadImage("Images/greenWar.PNG");
   size(640,480);
   frameRate(30);
 //background(0,255,0);
@@ -49,12 +49,12 @@ void draw(){
 
   if(playing == true){
     image(backgroundImage, 0, 0, width, height);
-    int sizex = 20;
-    int sizey = 320;
-    int size = 100;
-    image(red, sizex, sizey, size,size);
-    image(yellow, sizex+110, sizey, size,size);
-    image(green, sizex+220, sizey, size,size);
+    //int sizex = 20;
+    //int sizey = 320;
+    //int size = 100;
+    //image(red, sizex, sizey, size,size);
+    //image(yellow, sizex+110, sizey, size,size);
+    //image(green, sizex+220, sizey, size,size);
     println("inside keypressed true");
     
   image(movie,20,20, 400, 260);
@@ -87,7 +87,7 @@ void keyPressed(){
 }
 
 void mouseClicked(){
-  if(mouseX > width/2 && mouseX < width && mouseY > height-200 && mouseY < height){
+  if(mouseX > 455 && mouseX < 570 && mouseY > 340 && mouseY < 383){
   exit();
   }
 }
