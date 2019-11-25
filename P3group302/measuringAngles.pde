@@ -3,6 +3,7 @@
   int colorRed = 100;
   int colorGreen = 100;
   int colorBlue = 100;
+  int colorGray = color(#908F8F);
   
    int imageSize=100;
    int imageLoc = 10;
@@ -56,43 +57,43 @@ void measuringAngles(JSONObject data){
  float angleElbow1 = RAD_TO_DEG * acos(cosB);
   int roundAngleElbow1 = round(angleElbow1);
  // println("angle-elbow: " + roundAngleElbow1);
- fill(#908F8F);
+ fill(colorGray);
  //textSize(20);
      //text(roundAngleElbow1 + " °", bx, by-15); 
  
- if(roundAngleElbow1 > 110  && roundAngleElbow1 < 130){
-   for(int i=0; i<255;i++){
-   colorBlue= 100-i;
-   colorRed = 100-i;
-   colorGreen= 100+i;
- //  println("You might not yet have peformed a squat, try go deeper!");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-   }
-}else if(roundAngleElbow1 > 90  && roundAngleElbow1 < 109){
-   for(int i=0; i<255;i++){
-   colorBlue= 100-i;
-   colorRed= 100+i;
-   colorGreen= 100+i;
-   // println("You are doing it great, try aim for this lenght at every squat");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-   }
-}else if(roundAngleElbow1 > 0  && roundAngleElbow1 < 89){
-    for(int i=0; i<255; i++){
-   colorBlue= 100-i;
-   colorRed = 100+i;
-   colorGreen = 100-i;
-  // println("You might have gone too deep into the squat, try not going so deep!");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-    }
-} else {
-  //fill (colorRed, colorGreen, colorBlue);
-  fill(#908F8F);
-}
+// if(roundAngleElbow1 > 110  && roundAngleElbow1 < 130){
+//   for(int i=0; i<255;i++){
+//   colorBlue= 100-i;
+//   colorRed = 100-i;
+//   colorGreen= 100+i;
+// //  println("You might not yet have peformed a squat, try go deeper!");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//   }
+//}else if(roundAngleElbow1 > 90  && roundAngleElbow1 < 109){
+//   for(int i=0; i<255;i++){
+//   colorBlue= 100-i;
+//   colorRed= 100+i;
+//   colorGreen= 100+i;
+//   // println("You are doing it great, try aim for this lenght at every squat");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//   }
+//}else if(roundAngleElbow1 > 0  && roundAngleElbow1 < 89){
+//    for(int i=0; i<255; i++){
+//   colorBlue= 100-i;
+//   colorRed = 100+i;
+//   colorGreen = 100-i;
+//  // println("You might have gone too deep into the squat, try not going so deep!");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//    }
+//} else {
+//  //fill (colorRed, colorGreen, colorBlue);
+//  fill(#908F8F);
+//}
 
- ellipse(bx, by, jointSize, jointSize);
+ //ellipse(bx, by, jointSize, jointSize);
         }
  
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
@@ -270,42 +271,42 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
  float angleShoulder4 = RAD_TO_DEG * acos(cosB);
   int roundAngleShoulder4 = round(angleShoulder4);
  // println("angle-shoulder" + roundAngleShoulder4);
- fill(#908F8F);
+ fill(colorGray);
  //textSize(20);
  //text(roundAngleShoulder4 + " °", bx, by-15);
  
-  if(roundAngleShoulder4 > 110  && roundAngleShoulder4 < 130){
-   for(int i=0; i<255;i++){
-   colorBlue= 100-i;
-   colorRed = 100-i;
-   colorGreen= 100+i;
- //  println("You might not yet have peformed a squat, try go deeper!");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-   }
-}else if(roundAngleShoulder4 > 90  && roundAngleShoulder4 < 109){
-   for(int i=0; i<255;i++){
-   colorBlue= 100-i;
-   colorRed= 100+i;
-   colorGreen= 100+i;
-   // println("You are doing it great, try aim for this lenght at every squat");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-   }
-}else if(roundAngleShoulder4 > 0  && roundAngleShoulder4 < 89){
-    for(int i=0; i<255; i++){
-   colorBlue= 100-i;
-   colorRed = 100+i;
-   colorGreen = 100-i;
-  // println("You might have gone too deep into the squat, try not going so deep!");
-  fill(colorRed, colorGreen, colorBlue); 
-  noStroke();
-    }
-} else {
-  //fill (colorRed, colorGreen, colorBlue);
-  fill(#908F8F);
-}
- ellipse(bx, by, jointSize, jointSize);
+//  if(roundAngleShoulder4 > 110  && roundAngleShoulder4 < 130){
+//   for(int i=0; i<255;i++){
+//   colorBlue= 100-i;
+//   colorRed = 100-i;
+//   colorGreen= 100+i;
+// //  println("You might not yet have peformed a squat, try go deeper!");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//   }
+//}else if(roundAngleShoulder4 > 90  && roundAngleShoulder4 < 109){
+//   for(int i=0; i<255;i++){
+//   colorBlue= 100-i;
+//   colorRed= 100+i;
+//   colorGreen= 100+i;
+//   // println("You are doing it great, try aim for this lenght at every squat");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//   }
+//}else if(roundAngleShoulder4 > 0  && roundAngleShoulder4 < 89){
+//    for(int i=0; i<255; i++){
+//   colorBlue= 100-i;
+//   colorRed = 100+i;
+//   colorGreen = 100-i;
+//  // println("You might have gone too deep into the squat, try not going so deep!");
+//  fill(colorRed, colorGreen, colorBlue); 
+//  noStroke();
+//    }
+//} else {
+//  //fill (colorRed, colorGreen, colorBlue);
+//  fill(#908F8F);
+//}
+ //ellipse(bx, by, jointSize, jointSize);
           }
  
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
