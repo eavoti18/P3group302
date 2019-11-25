@@ -127,7 +127,9 @@ void measuringAngles(JSONObject data){
  float angleKnee2 = RAD_TO_DEG * acos(cosB);
   int roundAngleKnee2 = round(angleKnee2);
  // println("angle-knee: " + roundAngleKnee2);
+ 
  fill(#908F8F);
+ 
  //textSize(20);
      //text(roundAngleKnee2 + " °", bx, by-15);
      
@@ -200,10 +202,12 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
  float angleHip3 = RAD_TO_DEG * acos(cosB);
   int roundAngleHip3 = round(angleHip3);
  // println("angle-knee: " + roundAngleHip3);
+ 
  fill(#908F8F);
  //textSize(20);
  //text(roundAngleHip3 + " °", bx, by-15);
-     
+ 
+    
  if(roundAngleHip3 > 110  && roundAngleHip3 < 130){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
@@ -313,10 +317,10 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
  // H I P    O T H E R  
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
 
-           for(int r = 0 ; r < shoulder.length; r++){
-           JSONArray anglesone = keypoints.getJSONArray(shoulder[r][0]);
-           JSONArray anglestwo = keypoints.getJSONArray(shoulder[r][1]);
-           JSONArray anglesthree = keypoints.getJSONArray(shoulder[r][2]);
+           for(int r = 0 ; r < otherHip.length; r++){
+           JSONArray anglesone = keypoints.getJSONArray(otherHip[r][0]);
+           JSONArray anglestwo = keypoints.getJSONArray(otherHip[r][1]);
+           JSONArray anglesthree = keypoints.getJSONArray(otherHip[r][2]);
            float ax = anglesone.getFloat(0) * width;
            float ay = anglesone.getFloat(1) * height;
            float bx = anglestwo.getFloat(0) * width;
@@ -340,6 +344,7 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
  float angleHip5 = RAD_TO_DEG * acos(cosB);
   int roundAngleHip5 = round(angleHip5);
  // println("angle-hip" + roundAngleHip5);
+ 
  fill(#908F8F);
  //textSize(20);
  //text(roundAngleHip5 + " °", bx, by-15);
@@ -375,6 +380,8 @@ if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
   //fill (colorRed, colorGreen, colorBlue);
   fill(#908F8F);
 }
+
+
  ellipse(bx, by, jointSize, jointSize);
            }
          }
