@@ -29,7 +29,7 @@ void measuringAngles(JSONObject data){
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
  // E L B O W 
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
- 
+ /*
         for(int r = 0 ; r < elbow.length; r++){
            JSONArray anglesone = keypoints.getJSONArray(elbow[r][0]);
            JSONArray anglestwo = keypoints.getJSONArray(elbow[r][1]);
@@ -95,7 +95,7 @@ void measuringAngles(JSONObject data){
 
  //ellipse(bx, by, jointSize, jointSize);
         }
- 
+ */
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
  // K N E E 
  ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
@@ -133,6 +133,7 @@ void measuringAngles(JSONObject data){
  //textSize(20);
      //text(roundAngleKnee2 + " °", bx, by-15);
      
+    // Change angles when we know the right values.
 if(roundAngleKnee2 > 110  && roundAngleKnee2 < 130){
    for(int i=0; i<255;i++){
    colorBlue= 100-i;
