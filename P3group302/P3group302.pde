@@ -20,6 +20,7 @@ OscP5 oscP5Location1;
 NetAddress location2;
 PoseNet posenet = new PoseNet();
 Measuring measuring = new Measuring();
+Timer timer = new Timer(0);
 boolean recording = false; //status of recording
 // This array will hold all the humans detected
 JSONObject data;
@@ -48,13 +49,11 @@ void setup() {
   // setup timer
   lastMillis = millis();
   
-  //record and send info to other sketch
-  oscP5Location1 = new OscP5(this, 5001);
-  location2 = new NetAddress("127.0.0.1", 6001);
+  
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "C:/Users/maije/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -126,6 +125,9 @@ void keyPressed() {
   }
   //Save video recorded
   if (key == 'q') {
+    //record and send info to other sketch
+  oscP5Location1 = new OscP5(this, 5001);
+  location2 = new NetAddress("127.0.0.1", 6001);
     videoExport.dispose();
   }
   //Send message to output sketch and closing this one
