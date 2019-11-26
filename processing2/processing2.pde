@@ -40,6 +40,26 @@ void draw() {
       image(movie, 20, 20, 400, 260);
 
       image(squat, 400, 20, 200, 265);
+      
+      
+ for (int x = 0; x < movie.width; x++ ) {
+    for (int y = 0; y < movie.height; y++ ) {
+      
+      int loc = x + y*movie.width;
+
+      float r = red(movie.pixels [loc]); 
+      float g = green(movie.pixels[loc]);
+      float b = blue(movie.pixels[loc]);
+
+      if ((r>200) && (g <1) && (b<1) ){
+        text("Hello :D i am red now!", 10, 30);
+        //delay(1000);
+      movie.speed(2.0);
+      }else
+     movie.speed(1.0);
+     
+      }
+    }
     }
   }
 }
