@@ -1,3 +1,30 @@
+
+class PoseNet{
+  // This are the pair of body connections we want to form. 
+int[][] connections = {
+  {ModelUtils.POSE_NOSE_INDEX, ModelUtils.POSE_LEFT_EYE_INDEX}, 
+  {ModelUtils.POSE_LEFT_EYE_INDEX, ModelUtils.POSE_LEFT_EAR_INDEX}, 
+  {ModelUtils.POSE_NOSE_INDEX, ModelUtils.POSE_RIGHT_EYE_INDEX}, 
+  {ModelUtils.POSE_RIGHT_EYE_INDEX, ModelUtils.POSE_RIGHT_EAR_INDEX}, 
+
+  // added >>>>>
+  {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_SHOULDER_INDEX}, 
+  {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX}, 
+  {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX}, 
+  {ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX}, 
+  // added <<<<<
+
+  {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_ELBOW_INDEX}, 
+  {ModelUtils.POSE_RIGHT_ELBOW_INDEX, ModelUtils.POSE_RIGHT_WRIST_INDEX}, 
+  {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_LEFT_ELBOW_INDEX}, 
+  {ModelUtils.POSE_LEFT_ELBOW_INDEX, ModelUtils.POSE_LEFT_WRIST_INDEX}, 
+  {ModelUtils.POSE_RIGHT_HIP_INDEX, ModelUtils.POSE_RIGHT_KNEE_INDEX}, 
+  {ModelUtils.POSE_RIGHT_KNEE_INDEX, ModelUtils.POSE_RIGHT_ANKLE_INDEX}, 
+  {ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_LEFT_KNEE_INDEX}, 
+  {ModelUtils.POSE_LEFT_KNEE_INDEX, ModelUtils.POSE_LEFT_ANKLE_INDEX}
+};
+  PoseNet(){
+  }
 void drawPoseNetParts(JSONObject data){
   // Only if there are any humans detected
   if (data != null) {
@@ -20,4 +47,18 @@ void drawPoseNetParts(JSONObject data){
       }
     }
   }
+}
+
+void sendFrameToRunway() {
+  // nothing to send if there's no new camera data available
+  if (camera.available() == false) {
+    return;
+  }
+  // read a new frame
+  camera.read();
+  // crop image to Runway input format (600x400)
+  PImage image = camera.get(0, 0, 640, 480);
+  // query Runway with webcam image 
+  runway.query(image);
+}
 }
