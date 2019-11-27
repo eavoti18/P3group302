@@ -15,9 +15,6 @@ VideoExport videoExport;
 Movie squat;
 //reference to the camera
 Capture camera;
-//reference to other programs
-OscP5 oscP5Location1;
-NetAddress location2;
 PoseNet posenet = new PoseNet();
 Measuring measuring = new Measuring();
 Timer timer = new Timer(0);
@@ -29,7 +26,7 @@ JSONObject data;
 // periodically to be updated in RunWay using millis()
 int lastMillis;
 // takes about 100-200ms for Runway to process a 600x400 PoseNet frame
-int waitTime = 125; //210
+int waitTime = 100; //210
 
 //state used to change screens in the program
 int state = 1;
@@ -48,12 +45,12 @@ void setup() {
   camera.start();
   // setup timer
   lastMillis = millis();
-  
-  
+
+
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/maije/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -72,14 +69,17 @@ void draw() {
     image(squat, 80, 10, 200, 265);
   }
   if (state == 3) { //state 3 is the exercise part
-    background(0);
+    backgroundImage = loadImage("Images/record.png");
+    //background(0);
     //Show camerafeed
-  if (key == 'w') {
-    background(255);
+  }
+
+  if (state == 4) {
+    //background(255);
     image(camera, 0, 0);
     posenet.drawPoseNetParts(data);
     measuring.measuringAngles(data);
-  }
+
     // update timer
     int currentMillis = millis();
     // if the difference between current millis and last time we checked past the wait time
@@ -92,6 +92,17 @@ void draw() {
     if (recording) {
       videoExport.saveFrame();
     }
+    timer.countUp();
+    println("time counting: " + timer.getTime() + ".");
+    if (timer.getTime() >= 5) {
+      println("time: " + timer.getTime() +".");
+      recording = false;
+      videoExport.dispose();
+      state = 5;
+    }
+  }
+  if (state == 5) {
+    backgroundImage = loadImage("Images/tryagain.png");
   }
 }
 
@@ -118,28 +129,14 @@ void movieEvent(Movie m) {
 }
 
 void keyPressed() {
-  //start and stop saving frames to video
-  if (key == 'r' || key == 'R') {
-    recording = !recording;
-    println("Recording is " + (recording ? "ON" : "OFF"));
-  }
-  //Save video recorded
-  if (key == 'q') {
-    //record and send info to other sketch
-  oscP5Location1 = new OscP5(this, 5001);
-  location2 = new NetAddress("127.0.0.1", 6001);
+  if ( key == 's') {
+    recording = false;
     videoExport.dispose();
-  }
-  //Send message to output sketch and closing this one
-  if (key == 'm') {
-    OscMessage myMessage = new OscMessage("/test");
-    myMessage.add("true");
-    oscP5Location1.send(myMessage, location2); 
-    exit();
+    state = 5;
   }
 }
 
-
+//Cat will fix buttons to match!
 
 void mouseClicked() {
   //Click on begin it goes to the prof video screen.
@@ -149,5 +146,12 @@ void mouseClicked() {
   //click on I'm ready to go to exercise part
   else if (state == 2 && mouseX > 260 && mouseX < 375 && mouseY > 345 && mouseY < 388) {
     state = 3;
+  } else if (state == 3 && mouseX > 250 && mouseX < 385 && mouseY > 365 && mouseY < 419) {
+    recording = true;
+    state = 4;
+  } else if (state == 5 && mouseX > 244 && mouseX < 378 && mouseY > 143 && mouseY < 196) {
+    exit();
+  } else if (state == 5 && mouseX > 244 && mouseX < 380 && mouseY > 318 && mouseY < 374) {
+    state = 2;
   }
 }
