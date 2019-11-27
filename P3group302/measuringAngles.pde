@@ -78,13 +78,13 @@ class Measuring {
               noStroke();
             }
           } else if (roundAngleHip3 > 0  && roundAngleHip3 < 89) {//red
-            for (int i=0; i<255; i++) {
-              colorBlue= 100-i;
-              colorRed = 100+i;
-              colorGreen = 100-i;
-              fill(colorRed, colorGreen, colorBlue); 
+            //for (int i=0; i<255; i++) {
+            //  colorBlue= 100-i;
+            //  colorRed = 100+i;
+            //  colorGreen = 100-i;
+              fill(255, 0, 60);
               noStroke();
-            }
+           // }
           } else { //neutral
             fill(#908F8F);
           }
@@ -137,13 +137,13 @@ class Measuring {
               noStroke();
             }
           } else if (roundAngleHip5 > 0  && roundAngleHip5 < 89) { //red
-            for (int i=0; i<255; i++) {
-              colorBlue= 100-i;
-              colorRed = 100+i;
-              colorGreen = 100-i;
-              fill(colorRed, colorGreen, colorBlue); 
+            //for (int i=0; i<255; i++) {
+            //  colorBlue= 100-i;
+            //  colorRed = 100+i;
+            //  colorGreen = 100-i;
+              fill(255, 0, 60); 
               noStroke();
-            }
+            //}
           } else { //neutral
             fill(#908F8F);
           }
@@ -197,13 +197,13 @@ class Measuring {
               noStroke();
             }
           } else if (roundAngleKnee2 > 0  && roundAngleKnee2 < 89) { //red
-            for (int i=0; i<255; i++) {
-              colorBlue= 100-i;
-              colorRed = 100+i;
-              colorGreen = 100-i;
-              fill(colorRed, colorGreen, colorBlue); 
+            //for (int i=0; i<255; i++) {
+            //  colorBlue= 100-i;
+            //  colorRed = 100+i;
+            //  colorGreen = 100-i;
+              fill(255, 60, 0); 
               noStroke();
-            }
+            //}
           } else { //neutral
             fill(#908F8F);
           }

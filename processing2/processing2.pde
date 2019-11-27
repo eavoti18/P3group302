@@ -15,14 +15,13 @@ PImage resultback;
 PImage resultknee;
 
 int state = 1;
-float visible;
 
 void setup() {
   backgroundImage = loadImage("Images/resultsbuttonscreen.png");
   resultback = loadImage("Images/resultBack.png");
   resultknee = loadImage("Images/resultKnee.png");
   size(640, 480);
-  frameRate(30);
+  frameRate(45);
 
   squat = new Movie(this, "squat2.mp4");
   squat.loop();
@@ -35,18 +34,9 @@ void draw() {
     }
   
   if(state == 2){
-     visible= 255;
-
     image(backgroundImage, 0, 0, width, height);
     image(movie, 20, 20, 400, 260);
-    tint(255, visible);
     image(squat, 400, 20, 200, 265);
-    
-    
-    image(resultback, 400, 20, 200, 124);
-    
-
-
       
  for (int x = 0; x < movie.width; x++ ) {
     for (int y = 0; y < movie.height; y++ ) {
@@ -61,17 +51,16 @@ void draw() {
 // checking if the knees red color is present
       if ((r== 255) && (g == 60) && (b==0) ){
         text("Hello :D i am red fo now!", 10, 30);
-            image(resultknee, 400, 160, 200, 124);
-            
-      //movie.speed(2.0);
+            image(resultknee, 240, 300, 200, 124);
+            movie.speed(0.25);
       }
       // checking if the backs red color is present
       if ((r== 255) && (g == 0) && (b==60) ){
         text("Hello :D i am red fo now!", 10, 30);
-            image(resultback, 400, 160, 200, 124);
-            visible=0;
+            image(resultback, 20, 300, 200, 124);
+            movie.speed(0.25);
       }else{
-       visible=100;
+        movie.speed(0.5);
       }
     }
     }

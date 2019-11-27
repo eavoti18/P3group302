@@ -94,7 +94,7 @@ void draw() {
     }
     timer.countUp();
     println("time counting: " + timer.getTime() + ".");
-    if (timer.getTime() >= 5) {
+    if (timer.getTime() >= 20) {
       println("time: " + timer.getTime() +".");
       recording = false;
       videoExport.dispose();
