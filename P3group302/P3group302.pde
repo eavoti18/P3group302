@@ -140,18 +140,18 @@ void keyPressed() {
 
 void mouseClicked() {
   //Click on begin it goes to the prof video screen.
-  if (state == 1 && mouseX > 455 && mouseX < 570 && mouseY > 340 && mouseY < 390) {
+  if (state == 1 && mouseX > 455 && mouseX < 570 && mouseY > 344 && mouseY < 390) {
     state = 2;
   }
   //click on I'm ready to go to exercise part
-  else if (state == 2 && mouseX > 260 && mouseX < 375 && mouseY > 345 && mouseY < 388) {
+  else if (state == 2 && mouseX > 260 && mouseX < 375 && mouseY > 345 && mouseY < 390) {
     state = 3;
-  } else if (state == 3 && mouseX > 250 && mouseX < 385 && mouseY > 365 && mouseY < 419) {
+  } else if (state == 3 && mouseX > 287 && mouseX < 400 && mouseY > 342 && mouseY < 385) {
     recording = true;
     state = 4;
-  } else if (state == 5 && mouseX > 244 && mouseX < 378 && mouseY > 143 && mouseY < 196) {
+  } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 164 && mouseY < 208) {
     exit();
-  } else if (state == 5 && mouseX > 244 && mouseX < 380 && mouseY > 318 && mouseY < 374) {
+  } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 341 && mouseY < 386) {
     state = 2;
   }
 }

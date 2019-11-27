@@ -51,13 +51,13 @@ void draw() {
 // checking if the knees red color is present
       if ((r== 255) && (g == 60) && (b==0) ){
         text("Hello :D i am red fo now!", 10, 30);
-            image(resultknee, 240, 300, 200, 124);
+            image(resultknee, 240, 300, 204, 163);
             movie.speed(0.25);
       }
       // checking if the backs red color is present
       if ((r== 255) && (g == 0) && (b==60) ){
         text("Hello :D i am red fo now!", 10, 30);
-            image(resultback, 20, 300, 200, 124);
+            image(resultback, 20, 300, 204, 163);
             movie.speed(0.25);
       }else{
         movie.speed(0.5);
@@ -73,7 +73,7 @@ void movieEvent(Movie movie) {
 }
 
 void mouseClicked() {
-  if(state == 1 && mouseX > 250 && mouseX < 385 && mouseY > 210 && mouseY < 262){
+  if(state == 1 && mouseX > 255 && mouseX < 370 && mouseY > 204 && mouseY < 248){
   backgroundImage = loadImage("Images/endscreen.png");
   movie= new Movie(this, "interactive0.mp4");
     playing = true;
@@ -81,7 +81,7 @@ void mouseClicked() {
     movie.speed(0.5);
   state = 2;
   }
-  else if (state == 2 && mouseX > 455 && mouseX < 570 && mouseY > 340 && mouseY < 383) {
+  else if (state == 2 && mouseX > 475 && mouseX < 590 && mouseY > 340 && mouseY < 383) {
     exit();
   }
 }
