@@ -11,12 +11,16 @@ boolean playing = false;
 //the background image
 PImage backgroundImage;
 Movie squat;
+PImage resultback;
+PImage resultknee;
 
 int state = 1;
 
 
 void setup() {
   backgroundImage = loadImage("Images/resultsbuttonscreen.png");
+  resultback = loadImage("Images/resultBack.png");
+  resultknee = loadImage("Images/resultKnee.png");
   size(640, 480);
   frameRate(30);
 
@@ -34,6 +38,10 @@ void draw() {
     image(backgroundImage, 0, 0, width, height);
     image(movie, 20, 20, 400, 260);
     image(squat, 400, 20, 200, 265);
+    
+    
+    image(resultback, 400, 20, 200, 124);
+    image(resultknee, 400, 160, 200, 124);
   }
       
       
