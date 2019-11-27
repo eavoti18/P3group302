@@ -15,7 +15,7 @@ PImage resultback;
 PImage resultknee;
 
 int state = 1;
-
+float visible;
 
 void setup() {
   backgroundImage = loadImage("Images/resultsbuttonscreen.png");
@@ -35,37 +35,49 @@ void draw() {
     }
   
   if(state == 2){
+     visible= 255;
+
     image(backgroundImage, 0, 0, width, height);
     image(movie, 20, 20, 400, 260);
+    tint(255, visible);
     image(squat, 400, 20, 200, 265);
     
     
     image(resultback, 400, 20, 200, 124);
-    image(resultknee, 400, 160, 200, 124);
+    
+
+
+      
+ for (int x = 0; x < movie.width; x++ ) {
+    for (int y = 0; y < movie.height; y++ ) {
+      
+      int loc = x + y*movie.width;
+
+      float r = red(movie.pixels [loc]); 
+      float g = green(movie.pixels[loc]);
+      float b = blue(movie.pixels[loc]);
+
+
+// checking if the knees red color is present
+      if ((r== 255) && (g == 60) && (b==0) ){
+        text("Hello :D i am red fo now!", 10, 30);
+            image(resultknee, 400, 160, 200, 124);
+            
+      //movie.speed(2.0);
+      }
+      // checking if the backs red color is present
+      if ((r== 255) && (g == 0) && (b==60) ){
+        text("Hello :D i am red fo now!", 10, 30);
+            image(resultback, 400, 160, 200, 124);
+            visible=0;
+      }else{
+       visible=100;
+      }
+    }
+    }
   }
-      
-      
- ////for (int x = 0; x < movie.width; x++ ) {
- ////   for (int y = 0; y < movie.height; y++ ) {
-      
- ////     int loc = x + y*movie.width;
-
- ////     float r = red(movie.pixels [loc]); 
- ////     float g = green(movie.pixels[loc]);
- ////     float b = blue(movie.pixels[loc]);
-
- ////     if ((r>200) && (g <1) && (b<1) ){
- ////       text("Hello :D i am red now!", 10, 30);
- ////       //delay(1000);
- ////     movie.speed(2.0);
- ////     }else
- ////    movie.speed(1.0);
-     
- ////     }
- ////   }
- //   }
- // }
 }
+
 
 void movieEvent(Movie movie) {
   movie.read();
