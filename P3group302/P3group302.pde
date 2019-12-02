@@ -50,7 +50,7 @@ void setup() {
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/maije/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -94,7 +94,7 @@ void draw() {
     }
     timer.countUp();
     println("time counting: " + timer.getTime() + ".");
-    if (timer.getTime() >= 100) {
+    if (timer.getTime() >= 20) {
       println("time: " + timer.getTime() +".");
       recording = false;
       videoExport.dispose();

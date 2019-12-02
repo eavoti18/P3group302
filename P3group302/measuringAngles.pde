@@ -77,7 +77,7 @@ class Measuring {
               fill(colorRed, colorGreen, colorBlue); 
               noStroke();
             }
-          } else if (roundAngleHip3 > 0  && roundAngleHip3 < 89) {//red
+          } else if (roundAngleHip3 > 0  && roundAngleHip3 < 68) {//red
             //for (int i=0; i<255; i++) {
             //  colorBlue= 100-i;
             //  colorRed = 100+i;
