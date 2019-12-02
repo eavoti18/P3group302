@@ -61,7 +61,7 @@ class Measuring {
           //text(roundAngleHip3 + " °", bx, by-15);
 
 
-          if (roundAngleHip3 > 110  && roundAngleHip3 < 130) { //green
+          if (roundAngleHip3 > 85  && roundAngleHip3 < 105) { //green
             for (int i=0; i<255; i++) {
               colorBlue= 100-i;
               colorRed = 100-i;
@@ -69,7 +69,7 @@ class Measuring {
               fill(colorRed, colorGreen, colorBlue); 
               noStroke();
             }
-          } else if (roundAngleHip3 > 90  && roundAngleHip3 < 109) {//yellow
+          } else if (roundAngleHip3 > 68  && roundAngleHip3 < 85 ) {//yellow
             for (int i=0; i<255; i++) {
               colorBlue= 100-i;
               colorRed= 100+i;
@@ -97,7 +97,7 @@ class Measuring {
         // H I P    OTHER(INSIDE)   (knee - hip - other hip )
         ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
 
-        for (int r = 0; r < otherHip.length; r++) {
+        /*for (int r = 0; r < otherHip.length; r++) {
           JSONArray anglesone = keypoints.getJSONArray(otherHip[r][0]);
           JSONArray anglestwo = keypoints.getJSONArray(otherHip[r][1]);
           JSONArray anglesthree = keypoints.getJSONArray(otherHip[r][2]);
@@ -148,7 +148,7 @@ class Measuring {
             fill(#908F8F);
           }
           ellipse(bx, by, jointSize, jointSize);
-        }
+        }*/
 
         ///// /////  /////  ///// ///// ///// ///// ///// ///// ///// ///// /////
         // K N E E (hip - knee - ankle)
@@ -180,7 +180,7 @@ class Measuring {
 
           // Change angles when we know the right values.
           
-          if (roundAngleKnee2 > 110  && roundAngleKnee2 < 130) { //Green
+          if (roundAngleKnee2 > 75  && roundAngleKnee2 < 105) { //Green
             for (int i=0; i<255; i++) {
               colorBlue= 100-i;
               colorRed = 100-i;
@@ -188,7 +188,7 @@ class Measuring {
               fill(colorRed, colorGreen, colorBlue); 
               noStroke();
             }
-          } else if (roundAngleKnee2 > 90  && roundAngleKnee2 < 109) { //yellow
+          } else if (roundAngleKnee2 > 60  && roundAngleKnee2 < 75) { //yellow
             for (int i=0; i<255; i++) {
               colorBlue= 100-i;
               colorRed= 100+i;
@@ -196,7 +196,7 @@ class Measuring {
               fill(colorRed, colorGreen, colorBlue); 
               noStroke();
             }
-          } else if (roundAngleKnee2 > 0  && roundAngleKnee2 < 89) { //red
+          } else if (roundAngleKnee2 > 0  && roundAngleKnee2 < 60) { //red
             //for (int i=0; i<255; i++) {
             //  colorBlue= 100-i;
             //  colorRed = 100+i;

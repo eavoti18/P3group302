@@ -26,7 +26,7 @@ JSONObject data;
 // periodically to be updated in RunWay using millis()
 int lastMillis;
 // takes about 100-200ms for Runway to process a 600x400 PoseNet frame
-int waitTime = 100; //210
+int waitTime = 210; //210
 
 //state used to change screens in the program
 int state = 1;
@@ -50,7 +50,7 @@ void setup() {
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "C:/Users/maije/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -94,7 +94,7 @@ void draw() {
     }
     timer.countUp();
     println("time counting: " + timer.getTime() + ".");
-    if (timer.getTime() >= 20) {
+    if (timer.getTime() >= 100) {
       println("time: " + timer.getTime() +".");
       recording = false;
       videoExport.dispose();
@@ -121,6 +121,7 @@ public void runwayInfoEvent(JSONObject info) {
 }
 // if anything goes wrong
 public void runwayErrorEvent(String message) {
+  println("inside error");
   println(message);
 }
 
