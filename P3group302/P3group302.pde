@@ -8,6 +8,8 @@ import oscP5.*;
 import processing.video.*;
 // import Runway library
 import com.runwayml.*;
+// importing the sound libary
+import processing.sound.*; 
 // reference to runway instance
 RunwayOSC runway;
 //reference to video export instance
@@ -15,6 +17,7 @@ VideoExport videoExport;
 Movie squat;
 //reference to the camera
 Capture camera;
+SoundFile stopSound;
 PoseNet posenet = new PoseNet();
 Measuring measuring = new Measuring();
 Timer timer = new Timer(0);
@@ -36,6 +39,7 @@ PImage backgroundImage;
 
 void setup() {
   backgroundImage = loadImage("Images/startscreen.png");
+  stopSound=new SoundFile(this, "stopsound.mp3");
   size(640, 480);
   frameRate(45);
   // setup Runway
@@ -50,7 +54,7 @@ void setup() {
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/maije/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -94,8 +98,9 @@ void draw() {
     }
     timer.countUp();
     println("time counting: " + timer.getTime() + ".");
-    if (timer.getTime() >= 100) {
+    if (timer.getTime() >= 20) {
       println("time: " + timer.getTime() +".");
+      stopSound.play();
       recording = false;
       videoExport.dispose();
       state = 5;

@@ -50,13 +50,13 @@ void draw() {
 
 // checking if the knees red color is present
       if ((r== 255) && (g == 60) && (b==0) ){
-        text("Hello :D i am red fo now!", 10, 30);
+        //text("Hello :D i am red fo now!", 10, 30);
             image(resultknee, 240, 300, 204, 163);
             movie.speed(0.25);
       }
       // checking if the backs red color is present
       if ((r== 255) && (g == 0) && (b==60) ){
-        text("Hello :D i am red fo now!", 10, 30);
+        //text("Hello :D i am red fo now!", 10, 30);
             image(resultback, 20, 300, 204, 163);
             movie.speed(0.25);
       }else{
