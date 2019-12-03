@@ -7,6 +7,8 @@ Movie movie;
 
 String incoming = "false";
 boolean playing = false;
+boolean kneeWrong= false;
+boolean hipWrong = false;
 
 //the background image
 PImage backgroundImage;
@@ -51,18 +53,25 @@ void draw() {
 // checking if the knees red color is present
       if ((r== 255) && (g == 60) && (b==0) ){
         //text("Hello :D i am red fo now!", 10, 30);
-            image(resultknee, 240, 300, 204, 163);
-            movie.speed(0.25);
+        kneeWrong = true;
+            //movie.speed(0.25);
       }
       // checking if the backs red color is present
       if ((r== 255) && (g == 0) && (b==60) ){
         //text("Hello :D i am red fo now!", 10, 30);
-            image(resultback, 20, 300, 204, 163);
-            movie.speed(0.25);
+        hipWrong = true;
+            
+            //movie.speed(0.25);
       }else{
         movie.speed(0.5);
       }
     }
+    }
+    if(kneeWrong){
+    image(resultknee, 240, 300, 204, 163);
+    }
+    if(hipWrong){
+    image(resultback, 20, 300, 204, 163);
     }
   }
 }
