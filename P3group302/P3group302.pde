@@ -37,6 +37,13 @@ int state = 1;
 //the background image
 PImage backgroundImage;
 
+Movie movie;
+boolean playing = false;
+boolean kneeWrong= false;
+boolean hipWrong = false;
+PImage resultback;
+PImage resultknee;
+
 void setup() {
   backgroundImage = loadImage("Images/startscreen.png");
   stopSound=new SoundFile(this, "stopsound.mp3");
@@ -54,7 +61,7 @@ void setup() {
   noStroke();
   //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
   //PATH 
-  videoExport = new VideoExport(this, "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4");
+  videoExport = new VideoExport(this, "data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
   squat = new Movie(this, "squat2.mp4");
@@ -109,6 +116,39 @@ void draw() {
   if (state == 5) {
     backgroundImage = loadImage("Images/tryagain.png");
   }
+  if (state == 6) {
+    backgroundImage = loadImage("Images/endscreen.png");
+    image(movie, 20, 20, 400, 260);
+    image(squat, 400, 20, 200, 265);
+    resultback = loadImage("Images/resultBack.png");
+    resultknee = loadImage("Images/resultKnee.png");
+
+    for (int x = 0; x < movie.width; x++ ) {
+      for (int y = 0; y < movie.height; y++ ) {
+
+        int loc = x + y*movie.width;
+
+        float r = red(movie.pixels [loc]); 
+        float g = green(movie.pixels[loc]);
+        float b = blue(movie.pixels[loc]);
+
+        // checking if the knees red color is present
+        if ((r== 255) && (g == 60) && (b==0) ) {
+          kneeWrong = true;
+        }
+        // checking if the backs red color is present
+        if ((r== 255) && (g == 0) && (b==60) ) {
+          hipWrong = true;
+        }
+      }
+    }
+    if (kneeWrong) {
+      image(resultknee, 240, 300, 204, 163);
+    }
+    if (hipWrong) {
+      image(resultback, 20, 300, 204, 163);
+    }
+  }
 }
 
 
@@ -156,8 +196,14 @@ void mouseClicked() {
     recording = true;
     state = 4;
   } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 164 && mouseY < 208) {
-    exit();
+    movie= new Movie(this, "interactive0.mp4");
+    playing = true;
+    movie.loop();
+    movie.speed(0.5);
+    state = 6;
   } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 341 && mouseY < 386) {
     state = 2;
+  } else if (state == 6 && mouseX > 475 && mouseX < 590 && mouseY > 340 && mouseY < 383) {
+    exit();
   }
 }
