@@ -1,7 +1,5 @@
 //Used to export video file
 import com.hamoid.*;
-//used for talking to other processing sketch
-//import netP5.*;
 // used to connect to external programs
 import oscP5.*;
 // import video library
@@ -59,8 +57,6 @@ void setup() {
 
 
   noStroke();
-  //PATH CAT: "C:/Users/Catharina/Documents/GitHub/P3group302/processing2/data/interactive0.mp4"
-  //PATH 
   videoExport = new VideoExport(this, "data/interactive0.mp4");
   videoExport.startMovie();
   //Video of pro squatting
@@ -79,14 +75,11 @@ void draw() {
     backgroundImage = loadImage("Images/profvid.png");
     image(squat, 80, 10, 200, 265);
   }
-  if (state == 3) { //state 3 is the exercise part
+  if (state == 3) { //state 3 is informing the user that they have 20 seconds to squat
     backgroundImage = loadImage("Images/record.png");
-    //background(0);
-    //Show camerafeed
   }
 
-  if (state == 4) {
-    //background(255);
+  if (state == 4) { //state 4 is the exercise part
     image(camera, 0, 0);
     posenet.drawPoseNetParts(data);
     measuring.measuringAngles(data);
@@ -113,10 +106,10 @@ void draw() {
       state = 5;
     }
   }
-  if (state == 5) {
+  if (state == 5) { //state 5 provide the possibility to see results or try again.
     backgroundImage = loadImage("Images/tryagain.png");
   }
-  if (state == 6) {
+  if (state == 6) { //state 6 is the results
     backgroundImage = loadImage("Images/endscreen.png");
     image(movie, 20, 20, 400, 260);
     image(squat, 400, 20, 200, 265);
@@ -175,6 +168,7 @@ void movieEvent(Movie m) {
 }
 
 void keyPressed() {
+  //Press 's' to stop the recording before the 20 seconds are done
   if ( key == 's') {
     recording = false;
     videoExport.dispose();
@@ -182,28 +176,34 @@ void keyPressed() {
   }
 }
 
-//Cat will fix buttons to match!
-
 void mouseClicked() {
   //Click on begin it goes to the prof video screen.
   if (state == 1 && mouseX > 455 && mouseX < 570 && mouseY > 344 && mouseY < 390) {
     state = 2;
   }
-  //click on I'm ready to go to exercise part
+  //click on I'm ready to go to information about how long they have to perform squats
   else if (state == 2 && mouseX > 260 && mouseX < 375 && mouseY > 345 && mouseY < 390) {
     state = 3;
-  } else if (state == 3 && mouseX > 287 && mouseX < 400 && mouseY > 342 && mouseY < 385) {
+  } 
+  //click on record to start recording
+  else if (state == 3 && mouseX > 287 && mouseX < 400 && mouseY > 342 && mouseY < 385) {
     recording = true;
     state = 4;
-  } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 164 && mouseY < 208) {
+  } 
+  //click on results to see the results
+  else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 164 && mouseY < 208) {
     movie= new Movie(this, "interactive0.mp4");
     playing = true;
     movie.loop();
     movie.speed(0.5);
     state = 6;
-  } else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 341 && mouseY < 386) {
+  } 
+  //click on try again to go back to state 2 (the guided screen)
+  else if (state == 5 && mouseX > 262 && mouseX < 377 && mouseY > 341 && mouseY < 386) {
     state = 2;
-  } else if (state == 6 && mouseX > 475 && mouseX < 590 && mouseY > 340 && mouseY < 383) {
+  } 
+  //click on end to end the program
+  else if (state == 6 && mouseX > 475 && mouseX < 590 && mouseY > 340 && mouseY < 383) {
     exit();
   }
 }

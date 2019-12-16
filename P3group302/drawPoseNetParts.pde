@@ -7,12 +7,10 @@ int[][] connections = {
   {ModelUtils.POSE_NOSE_INDEX, ModelUtils.POSE_RIGHT_EYE_INDEX}, 
   {ModelUtils.POSE_RIGHT_EYE_INDEX, ModelUtils.POSE_RIGHT_EAR_INDEX}, 
 
-  // added >>>>>
   {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_SHOULDER_INDEX}, 
   {ModelUtils.POSE_LEFT_SHOULDER_INDEX, ModelUtils.POSE_LEFT_HIP_INDEX}, 
   {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX}, 
   {ModelUtils.POSE_LEFT_HIP_INDEX, ModelUtils.POSE_RIGHT_HIP_INDEX}, 
-  // added <<<<<
 
   {ModelUtils.POSE_RIGHT_SHOULDER_INDEX, ModelUtils.POSE_RIGHT_ELBOW_INDEX}, 
   {ModelUtils.POSE_RIGHT_ELBOW_INDEX, ModelUtils.POSE_RIGHT_WRIST_INDEX}, 
