@@ -1,7 +1,7 @@
 //Used to export video file
 import com.hamoid.*;
 //used for talking to other processing sketch
-import netP5.*;
+//import netP5.*;
 // used to connect to external programs
 import oscP5.*;
 // import video library
