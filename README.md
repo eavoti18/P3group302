@@ -8,8 +8,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 To be able to use the program you will need to download Proecessing3 and RunwayML.
 To download processing you just need to follow the link:[install Processing3](https://processing.org/download/)
 You will also need to import the following libraries:
