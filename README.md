@@ -21,7 +21,7 @@ import com.hamoid.*;
 - sound can be downloaded from inside Processing. download the library made by Processing.
 
 To download RunwayML you just have to follow the instruction in the link [download RunwayML](https://learn.runwayml.com/#/getting-started/installation)
-When starting RunwayML you will have to add PoseNet to you workspcce by searching on PoseNet inside browse models. When running the program for the first time you will have to set it to run on file and then click "run locally", which will add the OSC mode.
+When starting RunwayML you will have to add PoseNet to you workspace by searching on PoseNet inside browse models. When running the program for the first time you will have to set it to run on file and then click "run locally", which will add the OSC mode.
 
 
 ## Running the tests
