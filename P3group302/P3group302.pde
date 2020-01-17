@@ -41,6 +41,7 @@ Movie movie;
 boolean playing = false;
 boolean kneeWrong= false;
 boolean hipWrong = false;
+boolean music;
 PImage resultback;
 PImage resultknee;
 
@@ -80,24 +81,15 @@ void draw() {
   }
   if (state == 3) { //state 3 is informing the user that they have 20 seconds to squat
     backgroundImage = loadImage("Images/record.png");
+     music=true;
   }
 
   if (state == 4) { //state 4 is the exercise part
     image(camera, 0, 0);
-    startEx.play();
    
-    int i = 0;
-  while (true) {
-    delay(1000);
-    if (startEx.isPlaying()) {
-      i++;
-      println("File is still playing after " + i + " seconds");
-    } else {
-      break;
-    }
-  
-  println("Soundfile finished playing!");
-}   
+Guide();
+
+ 
     posenet.drawPoseNetParts(data);
     measuring.measuringAngles(data);
 
@@ -223,4 +215,11 @@ void mouseClicked() {
   else if (state == 6 && mouseX > 475 && mouseX < 590 && mouseY > 340 && mouseY < 383) {
     exit();
   }
+}
+
+public void Guide (){
+      if( music== true){
+    startEx.play();
+    music=false;
+    }
 }
