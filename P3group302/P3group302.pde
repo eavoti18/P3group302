@@ -13,6 +13,8 @@ RunwayOSC runway;
 //reference to video export instance
 VideoExport videoExport;
 Movie squat;
+//reference to sound
+SoundFile startEx;
 //reference to the camera
 Capture camera;
 SoundFile stopSound;
@@ -45,6 +47,7 @@ PImage resultknee;
 void setup() {
   backgroundImage = loadImage("Images/startscreen.png");
   stopSound=new SoundFile(this, "stopsound.mp3");
+  startEx = new SoundFile (this,"guide.mp3" );
   size(640, 480);
   frameRate(45);
   // setup Runway
@@ -81,6 +84,20 @@ void draw() {
 
   if (state == 4) { //state 4 is the exercise part
     image(camera, 0, 0);
+    startEx.play();
+   
+    int i = 0;
+  while (true) {
+    delay(1000);
+    if (startEx.isPlaying()) {
+      i++;
+      println("File is still playing after " + i + " seconds");
+    } else {
+      break;
+    }
+  
+  println("Soundfile finished playing!");
+}   
     posenet.drawPoseNetParts(data);
     measuring.measuringAngles(data);
 
